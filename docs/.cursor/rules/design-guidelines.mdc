@@ -1,0 +1,30 @@
+---
+alwaysApply: true
+description: "Design system rules for BDP prototypes"
+---
+
+# Design Guidelines — Best Day Phone
+
+When working on HTML/CSS prototypes in this directory, follow these design principles:
+
+## Visual Direction
+
+- **Tone:** Warm, human, not clinical
+- **Colors:** Warm cream backgrounds (#FDF8F3), rich accent colors (burgundy #722F37, forest green #228B22)
+- **Typography:** Elegant serif for headlines (e.g., Playfair Display), clean sans for body (e.g., Inter, Source Sans)
+- **Photography:** Real people, authentic moments, warm lighting
+- **Spacing:** Generous whitespace, let it breathe
+
+## UI Principles
+
+- Large, readable text (16px+ body, 24px+ headlines)
+- High contrast for accessibility
+- Simple, obvious interactions
+- Mobile-first responsive design
+
+## Avoid
+
+- Cold, clinical blues
+- Small text or dense layouts
+- Complex multi-step flows
+- Technical jargon in UI copy

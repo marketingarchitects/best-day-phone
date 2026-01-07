@@ -1,0 +1,26 @@
+---
+alwaysApply: true
+description: "Development server for HTML prototypes"
+---
+
+# Development Server — Docs Prototypes
+
+This folder contains HTML prototypes. Use `live-server` for local development with hot reload.
+
+## Start the server
+
+```bash
+cd /Users/jvargas/Documents/GitHub/best-day-phone/docs/design && npx --yes live-server --port=5500
+```
+
+## Server details
+
+- **URL:** http://127.0.0.1:5500/
+- **Port:** 5500
+- **Hot reload:** Enabled (auto-refreshes on file changes)
+
+## Notes
+
+- Run the server in the background when developing
+- Changes to HTML, CSS, and JS files will auto-refresh the browser
+- No build step required — static HTML files

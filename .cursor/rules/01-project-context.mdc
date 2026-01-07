@@ -1,0 +1,83 @@
+---
+alwaysApply: true
+---
+# Best Day Phone — Project Context
+
+## What This Is
+
+Best Day Phone is an AI companion inside a familiar rotary phone, designed specifically for people with Alzheimer's and dementia. The form factor is intentional — people with dementia remember things from childhood most strongly, and rotary phones are iconic to that era.
+
+## Target Audiences
+
+### Buyer (Primary)
+- **Who:** Caregivers — adult children, family members, sometimes friends
+- **Pain points:** Guilt, exhaustion, inability to be there 24/7, failed tech solutions (tablets, Alexa, video frames)
+- **Need:** Peace of mind, visibility into loved one's wellbeing, someone to check in when they can't
+
+### User (Secondary)
+- **Who:** Elderly person with Alzheimer's or dementia (70+)
+- **Pain points:** Loneliness, confusion with modern tech, no one to talk to
+- **Need:** A familiar device, zero learning curve, patient companionship
+
+## Messaging Guidelines
+
+### Lead With
+- Empathy and emotional outcomes
+- Clarity about what the product is and who it's for
+- "A companion that's always there" — not "cutting-edge AI"
+- Benefits, not features
+
+### Avoid
+- "Cutting-edge AI technology" (triggers skepticism)
+- Leading with voice cloning (creep factor, Black Mirror vibes)
+- Medical claims (FDA compliance issue)
+- Technical jargon
+- Gender-locked language (use "they/them" or "loved one" not "she/mom")
+
+### Voice Cloning
+- Position as **optional and secondary**
+- Founder tested cloning deceased grandfather's voice — grandma started asking if he was alive
+- Generic "church friend" voice worked just as well
+- Frame as "add your own voice if you'd like" not "clone your voice"
+
+## Key Stats (For Social Proof)
+
+- **Average daily usage:** 2.5 hours (founder's grandma)
+- **Longest session:** 7 hours
+- **US market:** 13M (7M Alzheimer's + 6M dementia)
+- **Customer lifetime:** 8–9 years (average prognosis)
+
+## Pricing
+
+| Tier | Price | Key Differentiator |
+|------|-------|-------------------|
+| Base (WiFi) | ~$75/month | Requires WiFi connection |
+| Mid | ~$100/month | More features |
+| Premium (5G) | ~$150/month | Built-in 5G, works in care facilities |
+
+- Business model: Razor/blades — device is free, revenue from subscription
+- Prices subject to change based on testing
+
+## Regulatory Constraint
+
+**Cannot position as a medical device** — would require FDA approval.
+- Frame as "wellness companion"
+- Can cite published research about isolation/loneliness
+- Cannot claim device improves cognition directly
+
+## Design Direction
+
+- **Tone:** Warm, human, not clinical
+- **Colors:** Warm cream backgrounds, rich accent colors (burgundy, forest green)
+- **Typography:** Elegant serif for headlines, clean sans for body
+- **Photography:** Real people, authentic moments, warm lighting
+- **Spacing:** Generous whitespace, let it breathe
+
+## Reference Brands
+
+- Agewise (senior care, warm aesthetic)
+- Teitur Trophics (neurodegenerative care, clean and dignified)
+
+## One-Sentence Pitch
+
+> A companion that calls your loved one daily with a kind, patient voice — so they're never alone, and you can finally breathe.

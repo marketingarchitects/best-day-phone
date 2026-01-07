@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+---
+
+# Cursor Rules — MDC File Guidelines
+
+## What Are MDC Files?
+
+MDC (Markdown Configuration) files store project context, rules, and guidelines that persist across AI sessions. They help maintain consistency and reduce repetitive explanations.
+
+## Where to Create Them
+
+All MDC files belong in:
+
+```
+[path]/best-day-phone/.cursor/rules/
+```
+
+## Naming Conventions
+
+- Use lowercase, descriptive names
+- Use `.mdc` extension
+- Name by topic or domain:
+  - `bdp.mdc` — Project-specific context (Best Day Phone)
+  - `server.mdc` — Development server setup
+  - `design.mdc` — Design system rules
+  - `copy.mdc` — Copywriting guidelines
+
+## File Structure
+
+Every MDC file should start with frontmatter:
+
+```yaml
+---
+alwaysApply: true
+---
+```
+
+Then use markdown for the content:
+- Clear headings
+- Bullet points for lists
+- Code blocks for commands
+- Tables for structured data
+
+## When to Create a New MDC File
+
+Create a new MDC file when:
+- A topic has enough depth to warrant its own file
+- Information needs to persist across sessions
+- Multiple rules or guidelines exist for a domain
+- Setup instructions should be reusable
