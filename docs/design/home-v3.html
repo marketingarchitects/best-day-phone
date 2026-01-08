@@ -11,35 +11,16 @@
 <!-- BDP Shared Theme -->
 <link rel="stylesheet" href="shared/bdp-theme.css"/>
 <script src="shared/bdp-tailwind.js"></script>
+<script src="shared/include.js"></script>
 </head>
 <body id="top" class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
-<nav class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md relative">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between items-center h-20">
-<a href="#top" class="flex items-center">
-<img src="assets/logo.svg" alt="Best Day Phone" class="h-14 w-auto" />
-</a>
-<div class="hidden md:flex items-center space-x-8">
-<a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#how-it-works">How it Works</a>
-<a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#ai-explained">About AI</a>
-<a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#pricing">Pricing</a>
-<a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#faq">FAQ</a>
-<a class="bg-primary hover:bg-opacity-90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-transform transform hover:-translate-y-0.5 shadow-lg shadow-primary/30" href="#pricing">
-                        Start Free Trial
-                    </a>
+<div data-include="shared/nav.html"></div>
+<!-- Nav Jagged Edge (home page only) -->
+<div class="relative">
+    <svg class="absolute -top-3 left-0 w-full z-40 transform scale-y-[-1]" style="height: 16px;" preserveAspectRatio="none" viewBox="0 0 1200 16" fill="#FFFBF7">
+        <polygon points="0,16 0,10 180,7 320,11 580,5 750,9 920,6 1080,10 1200,8 1200,16"/>
+    </svg>
 </div>
-<div class="md:hidden flex items-center">
-<button class="text-gray-600 dark:text-gray-300 hover:text-primary">
-<span class="material-icons-round text-2xl">menu</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Nav Jagged Edge -->
-<svg class="absolute -bottom-3 left-0 w-full z-40 transform scale-y-[-1]" style="height: 16px;" preserveAspectRatio="none" viewBox="0 0 1200 16" fill="#FFFBF7">
-<polygon points="0,16 0,10 180,7 320,11 580,5 750,9 920,6 1080,10 1200,8 1200,16"/>
-</svg>
-</nav>
 <section class="relative min-h-[500px] md:min-h-[600px] overflow-hidden">
 <!-- Video Background -->
 <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
@@ -580,54 +561,7 @@ Start Free Trial — Device Included
 <polygon points="0,20 0,11 300,7 530,13 750,5 920,10 1100,8 1200,12 1200,20"/>
 </svg>
 </section>
-<footer class="bg-secondary text-white dark:bg-black py-12">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid md:grid-cols-4 gap-8">
-<div class="col-span-1 md:col-span-1">
-<a href="#top" class="block mb-4">
-<img src="assets/logo-white.svg" alt="Best Day Phone" class="h-14 w-auto" />
-</a>
-<p class="text-gray-400 text-sm">A companion for people with Alzheimer's and dementia. Because no one should wait by a phone that doesn't ring.</p>
-<p class="text-gray-500 text-xs mt-2 italic">Give yourself room to breathe.</p>
-</div>
-<div>
-<h4 class="font-bold mb-4 text-primary">Product</h4>
-<ul class="space-y-2 text-sm text-gray-300">
-<li><a class="hover:text-white transition" href="#how-it-works">How It Works</a></li>
-<li><a class="hover:text-white transition" href="#ai-explained">About the AI</a></li>
-<li><a class="hover:text-white transition" href="#testimonials">Stories</a></li>
-<li><a class="hover:text-white transition" href="#pricing">Pricing</a></li>
-<li><a class="hover:text-white transition" href="#faq">FAQ</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-4 text-primary">Company</h4>
-<ul class="space-y-2 text-sm text-gray-300">
-<li><a class="hover:text-white transition" href="#">About Us</a></li>
-<li><a class="hover:text-white transition" href="#">Mission</a></li>
-<li><a class="hover:text-white transition" href="#">Contact</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-4 text-primary">Legal</h4>
-<ul class="space-y-2 text-sm text-gray-300">
-<li><a class="hover:text-white transition" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-white transition" href="#">Terms of Service</a></li>
-<li><a class="hover:text-white transition" href="#">AI Ethics</a></li>
-</ul>
-</div>
-</div>
-<div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-<div>© 2026 Best Day Phone. All rights reserved.</div>
-<div class="flex gap-4 mt-4 md:mt-0 text-2xl text-gray-400">
-<!-- Simple payment/trust icons using Material Icons as placeholders -->
-<span class="material-icons-round" title="Secure Payment">lock</span>
-<span class="material-icons-round" title="Visa">credit_card</span>
-<span class="material-icons-round" title="Verified">verified_user</span>
-</div>
-</div>
-</div>
-</footer>
+<div data-include="shared/footer.html"></div>
 
-</body></html>
-</body></html>
+</body>
+</html>
