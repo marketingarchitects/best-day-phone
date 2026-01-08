@@ -3,63 +3,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Best Day Phone - AI Companion for Alzheimer's & Dementia Care</title>
+<!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-<style>
-        /* Fluid Type Scale — inspired by Utopia.fyi
-           Min viewport: 320px, Max viewport: 1240px
-           Base: 18px @ 320 → 20px @ 1240
-           Scale: 1.2 (minor third) → 1.25 (major third) */
-        :root {
-            --step--2: clamp(0.6944rem, 0.6596rem + 0.1739vw, 0.8rem);
-            --step--1: clamp(0.8333rem, 0.7778rem + 0.2778vw, 1rem);
-            --step-0: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
-            --step-1: clamp(1.2rem, 1.0674rem + 0.6630vw, 1.5625rem);
-            --step-2: clamp(1.44rem, 1.2413rem + 0.9935vw, 1.9531rem);
-            --step-3: clamp(1.728rem, 1.4374rem + 1.4529vw, 2.4414rem);
-            --step-4: clamp(2.0736rem, 1.6573rem + 2.0815vw, 3.0518rem);
-            --step-5: clamp(2.4883rem, 1.9022rem + 2.9304vw, 3.8147rem);
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#D97706", // Warm amber/orange, inviting and energetic but grounded
-                        secondary: "#3B2F2F", // Dark warm brown for text/headings
-                        "background-light": "#FFFBF7", // Very light cream/warm white
-                        "background-dark": "#1F1A17", // Dark warm charcoal/brown
-                        "surface-light": "#FDEEDC", // Light peach/beige for cards
-                        "surface-dark": "#322822", // Darker coffee color for dark mode cards
-                        "accent-green": "#4D7C5D", // Sage green for trust
-                        "soft-pink": "#FCE7F3", // Soft pink for testimonial backgrounds
-                    },
-                    fontFamily: {
-                        display: ["Playfair Display", "serif"],
-                        sans: ["Inter", "sans-serif"],
-                    },
-                    fontSize: {
-                        'fluid-xs': 'var(--step--2)',
-                        'fluid-sm': 'var(--step--1)',
-                        'fluid-base': 'var(--step-0)',
-                        'fluid-lg': 'var(--step-1)',
-                        'fluid-xl': 'var(--step-2)',
-                        'fluid-2xl': 'var(--step-3)',
-                        'fluid-3xl': 'var(--step-4)',
-                        'fluid-4xl': 'var(--step-5)',
-                    },
-                    borderRadius: {
-                        DEFAULT: "1rem",
-                        'xl': '1.5rem',
-                        '2xl': '2rem',
-                    },
-                },
-            },
-        };
-    </script>
+<!-- BDP Shared Theme -->
+<link rel="stylesheet" href="shared/bdp-theme.css"/>
+<script src="shared/bdp-tailwind.js"></script>
 </head>
 <body id="top" class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
 <nav class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md relative">
