@@ -1,0 +1,133 @@
+---
+alwaysApply: false
+---
+# Cortex MCP — Documentation & Knowledge Base
+
+Cortex is our team's documentation platform (Docmost instance) accessible via MCP tools.
+
+**URL:** https://cortex.misfitsandmachines.com
+
+## Setup
+
+Add to your `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "cortex-production": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp-server-production-baf7.up.railway.app/mcp/",
+        "--header",
+        "Authorization:${CORTEX_API_KEY}"
+      ],
+      "env": {
+        "CORTEX_API_KEY": "Bearer <your-api-key>"
+      }
+    }
+  }
+}
+```
+
+Get your API key at: https://cortex.misfitsandmachines.com/settings/account/api-keys
+
+## Available Tools
+
+### Page Operations
+
+| Tool | Purpose |
+|------|---------|
+| `page_create` | Create a new page |
+| `page_read` | Read page content (supports markdown format) |
+| `page_list` | List pages in a space |
+| `page_delete` | Delete a page |
+| `page_move` | Move page in hierarchy |
+
+### Granular Editing
+
+| Tool | Purpose |
+|------|---------|
+| `page_replace_entire` | Replace all page content |
+| `page_append` | Add content to end of page |
+| `page_insert_at` | Insert content at specific position |
+| `page_update_section` | Update a section by heading name |
+| `page_replace_blocks` | Replace N blocks with M blocks |
+| `page_delete_blocks` | Delete blocks at position |
+
+### Search
+
+| Tool | Purpose |
+|------|---------|
+| `search_text` | Full-text keyword search |
+| `search_semantic` | AI-powered semantic search |
+
+### Other
+
+| Tool | Purpose |
+|------|---------|
+| `space_list` | List all spaces |
+| `comment_create/get/list/update/delete` | Manage comments |
+| `user_list` | List workspace users |
+| `workspace_get/list` | Workspace info |
+
+## Key Spaces
+
+| Space | ID | Purpose |
+|-------|-----|---------|
+| Product Space | `0199a58e-9925-7625-9c99-b117707f3d4b` | Product documentation |
+| Testing | `0199a272-910f-76e1-a20b-c95855dbe3c6` | Test pages |
+| Misfits Team | `019a07d5-4c48-789c-8b4c-b82cd14ea259` | Team docs |
+
+## Usage Examples
+
+### Read a page in markdown
+
+```
+page_read with pageId and format="markdown"
+```
+
+### Create a page with markdown content
+
+```
+page_create with:
+  - title: "My Page"
+  - spaceId: "<space-id>"
+  - format: "markdown"
+  - pageContent: "## Heading\n\nContent here"
+```
+
+### Update a specific section
+
+```
+page_update_section with:
+  - pageId: "<page-id>"
+  - section: "Section Name"
+  - format: "markdown"
+  - content: "## Section Name\n\nNew content"
+```
+
+### Search for content
+
+```
+search_semantic with query: "how does feature X work"
+```
+
+## Best Practices
+
+1. **Always read before writing** — Use `page_read` before update operations
+2. **Use expectedVersion** — Pass `expectedVersion` to detect concurrent edits
+3. **Prefer markdown format** — Set `format: "markdown"` for readable content
+4. **Don't include H1 in content** — Page title is stored separately
+
+## Best Day Phone Pages
+
+| Page | ID |
+|------|-----|
+| Best Day Phone (Parent) | `019b8f31-d441-7273-af02-51a02450d34d` |
+| Feature List (PRD) | `019b8f32-1a8d-70e1-b744-788abe793690` |
+| Users | `019b9e3e-5301-7a3d-88d5-d55483e48c87` |
+| Prototype | `019b9e3e-776c-7600-a4a7-9b1d15dbb1a8` |
+| Features | `019b9e3e-9554-7c9c-85c3-49cea4bab009` |
+| Product Work | `019b9e3e-b1df-78fe-b5e9-ee7e0cd71845` |
+| Marketing Principles | `019b9e3f-59b7-75f4-aff3-3c12384ea798` |
