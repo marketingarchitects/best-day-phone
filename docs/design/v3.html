@@ -61,17 +61,18 @@
         };
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+<body id="top" class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
 <nav class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md relative">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex justify-between items-center h-20">
-<div class="flex items-center">
+<a href="#top" class="flex items-center">
 <img src="assets/logo.svg" alt="Best Day Phone" class="h-14 w-auto" />
-</div>
+</a>
 <div class="hidden md:flex items-center space-x-8">
 <a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#how-it-works">How it Works</a>
 <a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#ai-explained">About AI</a>
 <a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#pricing">Pricing</a>
+<a class="text-base font-bold text-gray-600 dark:text-gray-300 hover:text-primary transition" href="#faq">FAQ</a>
 <a class="bg-primary hover:bg-opacity-90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-transform transform hover:-translate-y-0.5 shadow-lg shadow-primary/30" href="#pricing">
                         Start Free Trial
                     </a>
@@ -85,7 +86,7 @@
 </div>
 <!-- Nav Jagged Edge -->
 <svg class="absolute -bottom-3 left-0 w-full z-40 transform scale-y-[-1]" style="height: 16px;" preserveAspectRatio="none" viewBox="0 0 1200 16" fill="#FFFBF7">
-<polygon points="0,16 0,8 100,12 200,6 300,10 400,4 500,10 600,6 700,12 800,4 900,10 1000,6 1100,10 1200,8 1200,16"/>
+<polygon points="0,16 0,10 180,7 320,11 580,5 750,9 920,6 1080,10 1200,8 1200,16"/>
 </svg>
 </nav>
 <section class="relative min-h-[500px] md:min-h-[600px] overflow-hidden">
@@ -129,19 +130,19 @@ See How It Works
 </div>
 <!-- Jagged Edge -->
 <svg class="absolute -bottom-1 left-0 w-full" style="height: 24px;" preserveAspectRatio="none" viewBox="0 0 1200 24" fill="#FDEEDC">
-<polygon points="0,24 0,12 100,16 200,8 300,14 400,10 500,16 600,6 700,14 800,10 900,16 1000,8 1100,14 1200,10 1200,24"/>
+<polygon points="0,24 0,14 150,10 380,16 520,8 780,14 950,9 1120,13 1200,11 1200,24"/>
 </svg>
 </section>
-<section class="py-20 bg-surface-light dark:bg-surface-dark relative">
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-<h2 class="font-display text-2xl md:text-3xl font-bold text-secondary dark:text-white mb-6">You can't always be there. But you never stop worrying.</h2>
-<p class="text-lg text-gray-600 dark:text-gray-300 mb-12 leading-relaxed">
-                You've tried the tablets, the smart speakers, the video frames. They sit untouched. Technology wasn't built for the people you love most. 
+<section class="py-20 bg-surface-light dark:bg-surface-dark relative overflow-hidden">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+<h2 class="font-display text-2xl md:text-3xl font-bold text-secondary dark:text-white mb-6 max-w-3xl mx-auto">You can't always be there. But you never stop worrying.</h2>
+<p class="text-lg text-gray-600 dark:text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+                You've tried the smartphones, tablets, and other devices. They sit untouched. Technology wasn't built for the people you love most. 
             </p>
 <div class="grid md:grid-cols-3 gap-8 text-left max-w-5xl mx-auto">
 <div class="bg-white dark:bg-background-dark p-8 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-900/30">
 <img src="assets/phone.png" alt="Phone" class="w-16 h-16 object-contain mb-4" />
-<h3 class="font-display font-bold text-2xl mb-2 text-secondary dark:text-white">They can't learn new tech</h3>
+<h3 class="font-display font-bold text-2xl mb-2 text-secondary dark:text-white">They can't learn new technology</h3>
 <p class="text-gray-600 dark:text-gray-400 text-sm">People with dementia remember childhood most strongly. Smartphones will never feel familiar.</p>
 </div>
 <div class="bg-white dark:bg-background-dark p-8 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-900/30">
@@ -156,8 +157,12 @@ See How It Works
 </div>
 </div>
 </div>
+<!-- Jagged Edge -->
+<svg class="absolute -bottom-1 left-0 w-full" style="height: 20px;" preserveAspectRatio="none" viewBox="0 0 1200 20" fill="#FFFBF7">
+<polygon points="0,20 0,12 220,8 450,14 680,6 850,12 1050,9 1200,11 1200,20"/>
+</svg>
 </section>
-<section class="py-24 bg-background-light dark:bg-background-dark" id="how-it-works">
+<section class="py-24 bg-background-light dark:bg-background-dark relative" id="how-it-works">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid md:grid-cols-2 gap-16 items-center">
 <div class="order-2 md:order-1 relative">
@@ -199,8 +204,12 @@ See How It Works
 </div>
 </div>
 </div>
+<!-- Jagged Edge -->
+<svg class="absolute -bottom-1 left-0 w-full" style="height: 20px;" preserveAspectRatio="none" viewBox="0 0 1200 20" fill="#FFFFFF">
+<polygon points="0,20 0,10 170,14 400,7 620,13 800,8 1000,12 1200,9 1200,20"/>
+</svg>
 </section>
-<section class="py-20 bg-white dark:bg-surface-dark border-y border-gray-100 dark:border-gray-800" id="ai-explained">
+<section class="py-20 bg-white dark:bg-surface-dark relative overflow-hidden" id="ai-explained">
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-16">
 <span class="px-3 py-1 rounded-full border border-gray-200 dark:border-gray-600 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-300">Let's Talk About AI</span>
@@ -233,8 +242,12 @@ See How It Works
 </div>
 </div>
 </div>
+<!-- Jagged Edge -->
+<svg class="absolute -bottom-1 left-0 w-full" style="height: 20px;" preserveAspectRatio="none" viewBox="0 0 1200 20" fill="#FFFBF7">
+<polygon points="0,20 0,11 280,7 480,13 720,6 900,11 1100,8 1200,12 1200,20"/>
+</svg>
 </section>
-<section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden">
+<section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden relative" id="testimonials">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <h2 class="font-display text-3xl font-bold text-center text-secondary dark:text-white mb-4">From our founder's family.</h2>
 <p class="text-center text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto">We built Best Day Phone for our own grandmother. Here's what happened.</p>
@@ -366,9 +379,13 @@ See How It Works
         }
     });
 </script>
+<!-- Jagged Edge -->
+<svg class="absolute -bottom-1 left-0 w-full z-10" style="height: 20px;" preserveAspectRatio="none" viewBox="0 0 1200 20" fill="#FFFFFF">
+<polygon points="0,20 0,9 190,13 420,6 590,12 780,7 960,11 1150,8 1200,10 1200,20"/>
+</svg>
 </div>
 </section>
-<section class="py-24 bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800" id="pricing">
+<section class="py-24 bg-white dark:bg-surface-dark relative overflow-hidden" id="pricing">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 <h2 class="font-display text-3xl font-bold text-secondary dark:text-white mb-4">The phone is free. Really.</h2>
             <p class="text-gray-600 dark:text-gray-300 mb-4">The device costs us $100 to make, but we'll send it to you at no charge.</p>
@@ -497,8 +514,12 @@ See How It Works
             <span class="flex items-center gap-2"><span class="material-icons-round text-base">description</span> No long-term contracts</span>
         </div>
     </div>
+<!-- Jagged Edge -->
+<svg class="absolute -bottom-1 left-0 w-full" style="height: 20px;" preserveAspectRatio="none" viewBox="0 0 1200 20" fill="#FDEEDC">
+<polygon points="0,20 0,12 250,8 510,14 700,6 880,11 1080,7 1200,10 1200,20"/>
+</svg>
 </section>
-<section class="py-20 bg-surface-light dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800" id="faq">
+<section class="py-20 bg-surface-light dark:bg-surface-dark relative overflow-hidden" id="faq">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="font-display text-3xl font-bold text-center text-secondary dark:text-white mb-12">Questions families ask us.</h2>
         <div class="space-y-4">
@@ -586,7 +607,7 @@ See How It Works
         }
     </script>
 </section>
-<section class="py-24 bg-surface-light dark:bg-background-dark relative overflow-hidden">
+<section class="py-24 bg-surface-light dark:bg-background-dark relative overflow-hidden" id="get-started">
 <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-orange-100/50 to-transparent dark:from-orange-900/10 pointer-events-none"></div>
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
 <h2 class="font-display text-4xl md:text-5xl font-bold text-secondary dark:text-white mb-6">
@@ -603,24 +624,29 @@ Start Free Trial — Device Included
 </div>
 <p class="mt-6 text-sm text-gray-500 dark:text-gray-400">Free shipping. Cancel anytime.</p>
 </div>
+<!-- Jagged Edge -->
+<svg class="absolute -bottom-1 left-0 w-full" style="height: 20px;" preserveAspectRatio="none" viewBox="0 0 1200 20" fill="#3B2F2F">
+<polygon points="0,20 0,11 300,7 530,13 750,5 920,10 1100,8 1200,12 1200,20"/>
+</svg>
 </section>
-<footer class="bg-secondary text-white dark:bg-black py-12 border-t border-gray-700">
+<footer class="bg-secondary text-white dark:bg-black py-12">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid md:grid-cols-4 gap-8">
 <div class="col-span-1 md:col-span-1">
-<div class="mb-4">
+<a href="#top" class="block mb-4">
 <img src="assets/logo-white.svg" alt="Best Day Phone" class="h-14 w-auto" />
-</div>
+</a>
 <p class="text-gray-400 text-sm">A companion for people with Alzheimer's and dementia. Because no one should wait by a phone that doesn't ring.</p>
 <p class="text-gray-500 text-xs mt-2 italic">Give yourself room to breathe.</p>
 </div>
 <div>
 <h4 class="font-bold mb-4 text-primary">Product</h4>
 <ul class="space-y-2 text-sm text-gray-300">
-<li><a class="hover:text-white transition" href="#">Features</a></li>
-<li><a class="hover:text-white transition" href="#">Pricing</a></li>
-<li><a class="hover:text-white transition" href="#">Hardware</a></li>
-<li><a class="hover:text-white transition" href="#">Voice Samples</a></li>
+<li><a class="hover:text-white transition" href="#how-it-works">How It Works</a></li>
+<li><a class="hover:text-white transition" href="#ai-explained">About the AI</a></li>
+<li><a class="hover:text-white transition" href="#testimonials">Stories</a></li>
+<li><a class="hover:text-white transition" href="#pricing">Pricing</a></li>
+<li><a class="hover:text-white transition" href="#faq">FAQ</a></li>
 </ul>
 </div>
 <div>
