@@ -46,3 +46,6 @@ next-env.d.ts
 # Editor settings (personal preference)
 .vscode/
 .kiro/
+
+# Playwright MCP
+.playwright-mcp/
