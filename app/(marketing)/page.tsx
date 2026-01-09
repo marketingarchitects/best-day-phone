@@ -87,10 +87,10 @@ export default async function Home() {
           <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="font-serif text-3xl font-bold mb-4">
                   Choose Your Plan
                 </h2>
-                <p className="text-gray-600 max-w-2xl mx-auto">
+                <p className="text-muted-foreground max-w-2xl mx-auto">
                   No contracts. Cancel anytime. 30-day money-back guarantee.
                   <br />
                   Device is included free with subscription.
@@ -113,19 +113,17 @@ export default async function Home() {
                       </div>
                     )}
 
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      {option.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <h3 className="text-xl font-bold mb-2">{option.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-4">
                       {option.description}
                     </p>
 
                     <div className="mb-6">
-                      <span className="text-4xl font-bold text-gray-900">
-                        {option.price}
-                      </span>
+                      <span className="text-4xl font-bold">{option.price}</span>
                       {option.period && (
-                        <span className="text-gray-500">{option.period}</span>
+                        <span className="text-muted-foreground">
+                          {option.period}
+                        </span>
                       )}
                     </div>
 
@@ -159,7 +157,7 @@ export default async function Home() {
                 ))}
               </div>
 
-              <p className="text-center text-sm text-gray-500 mt-12">
+              <p className="text-center text-sm text-muted-foreground mt-12">
                 Questions? Contact us at{" "}
                 <a
                   href="mailto:support@bestdayphone.com"

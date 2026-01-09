@@ -22,6 +22,7 @@ This is a [Next.js](https://nextjs.org) project built with:
 - Tailwind CSS
 - shadcn/ui (component library)
 - Supabase (authentication & database)
+- Stripe (payment processing)
 - pnpm package manager
 
 ## Getting Started
@@ -124,6 +125,53 @@ export default async function ProtectedPage() {
   return <div>Welcome, {user?.email}</div>;
 }
 ```
+
+## Payment Processing
+
+This project uses [Stripe](https://stripe.com) for subscription and payment processing.
+
+### Features
+
+- **Stripe Buy Button:** Embedded checkout for phone and subscription services
+- **Multiple Pricing Tiers:** Base WiFi (~$75/mo), Mid (~$100/mo), Premium 5G (~$150/mo)
+- **Device Included:** All subscriptions include the Best Day Phone device at no extra cost
+- **Authentication-Gated:** Payment options only visible to logged-in users
+
+### Setup
+
+To configure Stripe payments:
+
+1. Create a [Stripe account](https://dashboard.stripe.com/register) if you don't have one
+
+2. Create products and pricing in your Stripe Dashboard
+
+3. Generate Stripe Buy Buttons for each pricing tier:
+
+   - Go to **Products** in your Stripe Dashboard
+   - Select a product and click **Create payment link** or **Buy button**
+   - Copy the buy button ID (starts with `buy_btn_`)
+
+4. Update the pricing options in `app/(marketing)/page.tsx`:
+
+```typescript
+const pricingOptions: PricingOption[] = [
+  {
+    title: "Base WiFi",
+    price: "$75",
+    stripeBuyButtonId: "buy_btn_YOUR_BUTTON_ID",
+    // ... other options
+  },
+];
+```
+
+5. Set your Stripe publishable key in the `STRIPE_PUBLISHABLE_KEY` constant (currently set to test mode)
+
+### Test Mode
+
+The project is currently configured with Stripe test keys. Use [Stripe test cards](https://stripe.com/docs/testing) for development:
+
+- Success: `4242 4242 4242 4242`
+- Decline: `4000 0000 0000 0002`
 
 ## Project Resources
 
