@@ -133,7 +133,7 @@ export default async function Home() {
 
       {!user && (
         <div className="text-center mt-16 text-sm text-muted-foreground">
-          landing page here
+          marketing material here
         </div>
       )}
     </>
