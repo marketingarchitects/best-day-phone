@@ -3,10 +3,10 @@ import { PricingOption } from "@/components/marketing/PricingPlans";
 export const pricingOptions: PricingOption[] = [
   {
     title: "Base WiFi",
-    priceId: "price_1SnejsC8UztKoaSsFIgd9BKh",
     description: "Perfect for home use with WiFi connection",
     price: "$25",
     period: "/month",
+    priceId: "price_1SnejsC8UztKoaSsFIgd9BKh",
     paymentLink: "https://buy.stripe.com/test_4gM3cu1VOaHr5HZ5Aea7C02",
     features: [
       "Best Day Phone device (free)",
@@ -18,10 +18,10 @@ export const pricingOptions: PricingOption[] = [
   },
   {
     title: "Premium 5G",
-    priceId: "price_1SnenOC8UztKoaSsvpH6lgZK",
     description: "Works anywhere, perfect for care facilities",
     price: "$50",
     period: "/month",
+    priceId: "price_1SnenOC8UztKoaSsvpH6lgZK",
     paymentLink: "https://buy.stripe.com/test_9B69AS7g8dTD6M37Ima7C03",
     badge: "MOST POPULAR",
     features: [
