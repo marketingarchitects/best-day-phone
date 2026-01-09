@@ -1,82 +1,4 @@
-$header-edge-width: .55rem;
 $section-edge-width: .5rem;
-
-/*----------------------------------------*/
-/* HEADER
-/*----------------------------------------*/
-.header {
-  position: sticky;
-  top: 0;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  z-index: 100;
-  clip-path: polygon(
-    0% 0%,
-    0% calc(100% - #{$header-edge-width * .5}),
-    8.33% calc(100% - #{$header-edge-width}),
-    16.67% calc(100% - #{$header-edge-width * .25}),
-    25% calc(100% - #{$header-edge-width * .75}),
-    33.33% 100%,
-    41.67% calc(100% - #{$header-edge-width * .75}),
-    50% calc(100% - #{$header-edge-width * .25}),
-    58.33% calc(100% - #{$header-edge-width}),
-    66.67% 100%,
-    75% calc(100% - #{$header-edge-width * .75}),
-    83.33% calc(100% - #{$header-edge-width * .25}),
-    91.67% calc(100% - #{$header-edge-width * .75}),
-    100% calc(100% - #{$header-edge-width * .50}),
-    100% 0%
-  );
-
-  .headerContent {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 2rem 1rem calc(2rem + #{$header-edge-width / 2}) 1rem;
-  }
-
-  .logo {
-    display: block;
-    transition: transform .3s ease;
-
-    &:hover,
-    &:focus-visible {
-      transform: scale(1.05);
-    }
-
-    img {
-      display: block;
-      height: 3.5rem;
-      width: auto;
-    }
-  }
-
-  .navigation {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    
-    a:not([data-variant]) { /* Only style links that aren't buttons */
-      color: var(--color-gray);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color .2s ease;
-
-      &:hover,
-      &:focus-visible {
-        color: var(--color-orange);
-      }
-    }
-  }
-}
-
-
 
 /*----------------------------------------*/
 /* FOOTER
@@ -90,39 +12,35 @@ $section-edge-width: .5rem;
 /*----------------------------------------*/
 /* MAIN CONTENT
 /*----------------------------------------*/
-.main {
-  margin-top: calc(#{$header-edge-width * -1});
+.section {
+  position: relative;
+  overflow: hidden;
 
-  .section {
+  &:not(.sectionHero) {
+    margin-top: calc(#{$section-edge-width * -1});
+    clip-path: polygon(
+      0% #{$section-edge-width * .75},
+      12.5% #{$section-edge-width * .25},
+      31.67% #{$section-edge-width},
+      43.33% 0%,
+      65% #{$section-edge-width * .75},
+      79.17% #{$section-edge-width * .125},
+      93.33% #{$section-edge-width * .625},
+      100% #{$section-edge-width * .375},
+      100% 100%,
+      0% 100%
+    );
+  }
+  
+  .sectionContent {
     position: relative;
-    overflow: hidden;
-
-    &:not(.sectionHero) {
-      margin-top: calc(#{$section-edge-width * -1});
-      clip-path: polygon(
-        0% #{$section-edge-width * .75},
-        12.5% #{$section-edge-width * .25},
-        31.67% #{$section-edge-width},
-        43.33% 0%,
-        65% #{$section-edge-width * .75},
-        79.17% #{$section-edge-width * .125},
-        93.33% #{$section-edge-width * .625},
-        100% #{$section-edge-width * .375},
-        100% 100%,
-        0% 100%
-      );
-    }
-    
-    .sectionContent {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
-      z-index: 1;
-    }
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    z-index: 1;
   }
 }
 

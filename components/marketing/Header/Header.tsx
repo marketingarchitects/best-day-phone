@@ -2,13 +2,12 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { Button } from '@/components/ui/Button/Button';
-import styles from "./page.module.scss";
+import styles from "./header.module.scss";
 
 export const Header = async () => {
-  // const supabase = await createClient();
-  // const { data } = await supabase.auth.getClaims();
-  // const user = data?.claims;
-  const user = false;
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims;
   
   return (
     <header className={styles.header}>
