@@ -1,7 +1,5 @@
 # Best Day Phone
 
-A companion that's always there — so they're never alone, and you can finally breathe.
-
 Best Day Phone is an AI companion inside a familiar rotary phone, designed specifically for people with Alzheimer's and dementia. The form factor is intentional — people with dementia remember things from childhood most strongly, and rotary phones are iconic to that era.
 
 ## Tech Stack
@@ -44,9 +42,11 @@ Create a `.env.local` file in the root directory with the following:
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
 SUPABASE_SECRET_KEY=your_supabase_service_role_key
-```
 
-You can find these values in your Supabase project settings under **API**.
+# Stripe Configuration
+STRIPE_SECRET_KEY=your_stripe_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+```
 
 4. Run the development server:
 
@@ -56,135 +56,13 @@ pnpm dev
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-### Adding UI Components
-
-This project uses [shadcn/ui](https://ui.shadcn.com/) for UI components. To add a new component:
-
-```bash
-pnpm dlx shadcn@latest add button
-```
-
-Replace `button` with any available component (e.g., `card`, `dialog`, `accordion`). Components will be added to the `components/ui` directory and can be customized as needed.
-
 ## Database Management
-
-This project uses Supabase for database management with local development support via the [Supabase CLI](https://supabase.com/docs/guides/cli).
-
-### Prerequisites
-
-Install the Supabase CLI:
-
-```bash
-# macOS (Homebrew)
-brew install supabase/tap/supabase
-
-# Other platforms
-npm install -g supabase
-```
 
 Generate TypeScript types from your Supabase database schema:
 
 ```bash
 npx supabase gen types typescript --project-id sfstxiekmyyvpelokzrt > types/database.types.ts
 ```
-
-### Link to Remote Project
-
-Link your local project to your remote Supabase project:
-
-```bash
-supabase link --project-ref sfstxiekmyyvpelokzrt
-```
-
-You can find your project ref in your Supabase project settings URL.
-
-### Common Commands
-
-**Start Local Development:**
-
-```bash
-supabase start
-```
-
-Starts a local Supabase stack (Postgres, Auth, Storage, etc.) using Docker. This is useful for local development and testing.
-
-**Stop Local Development:**
-
-```bash
-supabase stop
-```
-
-Stops the local Supabase stack.
-
-**Check Status:**
-
-```bash
-supabase status
-```
-
-Shows the status of your local Supabase services including URLs and access keys.
-
-**Reset Local Database:**
-
-```bash
-supabase db reset
-```
-
-Drops and recreates the local database, then applies all migrations from scratch. Useful when testing migration changes or starting fresh.
-
-**Push Migrations to Remote:**
-
-```bash
-supabase db push
-```
-
-Pushes any unapplied local migrations to your remote Supabase database. This is how you deploy schema changes to production.
-
-**List Migrations:**
-
-```bash
-# List local and remote migration status
-supabase migration list --linked
-
-# List local migrations only
-supabase migration list --local
-```
-
-Shows which migrations have been applied locally and remotely, helping you track deployment status.
-
-**Create New Migration:**
-
-```bash
-supabase migration new migration_name
-```
-
-Creates a new migration file in `supabase/migrations/` with a timestamp prefix.
-
-**Generate Migration from Schema Diff:**
-
-```bash
-supabase db diff -f migration_name
-```
-
-Compares your local database schema to the migration history and generates a new migration file with the differences. Useful for capturing manual schema changes.
-
-**Pull Remote Schema:**
-
-```bash
-supabase db pull
-```
-
-Generates a migration file that represents the current state of your remote database. Useful for syncing your local environment with production changes.
-
-**Repair Migration History:**
-
-```bash
-supabase migration repair --status reverted 00001 00002
-```
-
-Marks migrations as reverted in the remote database. Useful for fixing migration state mismatches.
 
 ### Multi-Tenant Architecture
 
@@ -316,63 +194,13 @@ This project uses [Stripe](https://stripe.com) for subscription and payment proc
 ### Features
 
 - **Stripe Checkout:** Embedded buy button checkout flow for subscriptions
-- **Two Pricing Tiers:**
-  - **Base WiFi:** $25/month — Requires WiFi connection
-  - **Premium 5G:** $50/month — Built-in 5G, works anywhere
-- **Device Included:** All subscriptions include the Best Day Phone device at no extra cost
 - **Authentication-Gated:** Checkout only available to logged-in users
 - **Subscription Confirmation:** Detailed post-checkout confirmation page with session details
 - **Customer Portal:** Integrated Stripe Customer Portal for self-service subscription management
 
-### Setup
-
-To configure Stripe payments:
-
-1. Create a [Stripe account](https://dashboard.stripe.com/register) if you don't have one
-
-2. Add Stripe keys to your `.env.local` file:
-
-```bash
-# Stripe Configuration
-STRIPE_SECRET_KEY=sk_test_your_secret_key_here
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_publishable_key_here
-```
-
-3. Create products and pricing in your Stripe Dashboard
-
-4. Generate Stripe payment links for each pricing tier:
-
-   - Go to **Products** in your Stripe Dashboard
-   - Select a product and click **Create payment link**
-   - Configure the payment link with your product details
-   - Copy the payment link URL
-
-5. Update the pricing options in `lib/constants/pricing.ts`:
-
-```typescript
-export const pricingOptions: PricingOption[] = [
-  {
-    title: "Base WiFi",
-    price: "$25",
-    priceId: "price_YOUR_PRICE_ID",
-    paymentLink: "https://buy.stripe.com/YOUR_LINK",
-    // ... other options
-  },
-];
-```
-
 ### Subscription Confirmation Page
 
 After a successful checkout, customers are redirected to `/dashboard/subscriptions/confirmation?session_id=xxx` where they can view:
-
-- Customer email
-- Plan name and pricing
-- Payment amount and status
-- Payment ID (for reference)
-- Subscription status (Active/Trial/etc.)
-- Billing cycle frequency
-- Next billing date
-- Direct link to manage their subscription
 
 The confirmation page automatically retrieves session details from Stripe using the session ID.
 
@@ -384,8 +212,6 @@ The integrated Stripe Customer Portal allows customers to:
 - View billing history and download invoices
 - Manage subscription (upgrade, downgrade, cancel)
 - Update billing information
-
-Customers can access the portal via the **"Manage Subscription"** button on the confirmation page, which opens Stripe's hosted portal in a new tab.
 
 ### Stripe Utilities
 
