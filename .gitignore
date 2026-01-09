@@ -39,10 +39,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Personal Cursor rules (not shared with team)
-.cursor/rules/personal-*.mdc
-
-# Editor settings (personal preference)
-.vscode/
-.kiro/
+.cursor/mcp.json
