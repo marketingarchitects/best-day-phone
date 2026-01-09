@@ -20,24 +20,44 @@ export default async function Header({ className }: HeaderProps) {
         className
       )}
     >
-      <Link href="/" className="text-2xl font-semibold">
+      <Link href="/" className="text-3xl font-bold font-serif">
         Best Day Phone
       </Link>
 
-      <div className="flex items-center gap-2">
-        {user ? (
-          <>
+      <nav className="hidden md:flex items-center space-x-8">
+        <a
+          className="text-sm font-medium text-gray-600 hover:text-primary transition"
+          href="#how-it-works"
+        >
+          How it Works
+        </a>
+        <a
+          className="text-sm font-medium text-gray-600 hover:text-primary transition"
+          href="#features"
+        >
+          Features
+        </a>
+        <a
+          className="text-sm font-medium text-gray-600 hover:text-primary transition"
+          href="#pricing"
+        >
+          Pricing
+        </a>
+        <div className="ml-4 flex items-center gap-3">
+          {user ? (
+            <>
+              <Button asChild>
+                <Link href="/protected">Profile</Link>
+              </Button>
+              <LogoutButton />
+            </>
+          ) : (
             <Button asChild>
-              <Link href="/protected">Profile</Link>
+              <Link href="/auth/sign-up">Get Started</Link>
             </Button>
-            <LogoutButton />
-          </>
-        ) : (
-          <Button asChild>
-            <Link href="/auth/sign-up">Sign Up</Link>
-          </Button>
-        )}
-      </div>
+          )}
+        </div>
+      </nav>
     </header>
   );
 }
