@@ -35,7 +35,10 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         password,
       })
       if (error) throw error
-      router.push('/dashboard')
+      
+      // TODO: Check if user has active subscription
+      // For now, redirect to activate page where subscription can be completed
+      router.push('/auth/activate')
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : 'An error occurred')
     } finally {

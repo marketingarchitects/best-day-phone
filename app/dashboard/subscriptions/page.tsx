@@ -20,6 +20,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { CreditCard, AlertCircle, CheckCircle2, Clock } from "lucide-react";
+import { SelectedPlanCard } from "@/components/marketing/SelectedPlanCard";
 
 export default async function SubscriptionPage() {
   const supabase = await createClient();
@@ -187,29 +188,34 @@ export default async function SubscriptionPage() {
 
           {mockSubscriptions.length === 0 ? (
             // No subscription state
-            <Card>
-              <CardHeader>
-                <CardTitle>No Active Subscription</CardTitle>
-                <CardDescription>
-                  You don&apos;t have an active subscription yet
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col items-center justify-center py-8 text-center">
-                  <CreditCard className="h-12 w-12 text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">
-                    Start Your Journey
-                  </h3>
-                  <p className="text-muted-foreground mb-6 max-w-md">
-                    Subscribe to Best Day Phone to bring companionship and
-                    connection to your loved one&apos;s daily life.
-                  </p>
-                  <Button asChild size="lg">
-                    <Link href="/#pricing">View Plans</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="space-y-6">
+              {/* Show selected plan card if user has one */}
+              <SelectedPlanCard />
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>No Active Subscription</CardTitle>
+                  <CardDescription>
+                    You don&apos;t have an active subscription yet
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-col items-center justify-center py-8 text-center">
+                    <CreditCard className="h-12 w-12 text-muted-foreground mb-4" />
+                    <h3 className="text-lg font-semibold mb-2">
+                      Start Your Journey
+                    </h3>
+                    <p className="text-muted-foreground mb-6 max-w-md">
+                      Subscribe to Best Day Phone to bring companionship and
+                      connection to your loved one&apos;s daily life.
+                    </p>
+                    <Button asChild size="lg">
+                      <Link href="/#pricing">View Plans</Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           ) : (
             // List subscriptions
             <div className="space-y-6">
