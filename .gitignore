@@ -50,5 +50,6 @@ next-env.d.ts
 # Playwright MCP
 .playwright-mcp/
 
-# Scraped examples (reference only)
+# Examples (reference only)
 /examples/
+.wrike/
