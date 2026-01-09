@@ -133,7 +133,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <Link href="/dashboard" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <h1 className="text-xl font-bold font-serif">Best Day Phone</h1>
         </Link>
       </SidebarHeader>
