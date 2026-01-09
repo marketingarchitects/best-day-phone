@@ -114,7 +114,7 @@ export default async function Home() {
 
               <Button asChild size="lg">
                 <Link href={user ? option.paymentLink : "/auth/sign-up"}>
-                  Subscribe
+                  Get Started
                 </Link>
               </Button>
             </div>
