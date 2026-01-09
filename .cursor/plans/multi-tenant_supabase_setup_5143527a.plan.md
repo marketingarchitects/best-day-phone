@@ -4,41 +4,41 @@ overview: Implement family-based multi-tenancy with strict row-level security in
 todos:
   - id: create-migrations
     content: Create Supabase migration files for all tables (teams, roles, profiles, members, care_recipients, devices, conversations)
-    status: pending
+    status: completed
   - id: rls-policies
     content: Implement Row Level Security policies for strict data isolation
-    status: pending
+    status: completed
     dependencies:
       - create-migrations
   - id: helper-functions
     content: Create database helper functions and triggers for team management
-    status: pending
+    status: completed
     dependencies:
       - create-migrations
   - id: typescript-types
     content: Generate TypeScript types from Supabase schema
-    status: pending
+    status: completed
     dependencies:
       - create-migrations
   - id: server-helpers
     content: Create server-side team context helpers in lib/supabase/teams.ts
-    status: pending
+    status: completed
     dependencies:
       - typescript-types
   - id: client-provider
     content: Build TeamProvider React context and useTeam hook
-    status: pending
+    status: completed
     dependencies:
       - typescript-types
   - id: signup-flow
     content: Update sign-up flow to create team and set primary caregiver
-    status: pending
+    status: completed
     dependencies:
       - server-helpers
       - client-provider
   - id: dashboard-updates
     content: Update dashboard and sidebar to show team-scoped data
-    status: pending
+    status: completed
     dependencies:
       - client-provider
 ---

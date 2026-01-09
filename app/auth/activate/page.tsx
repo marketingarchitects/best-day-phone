@@ -58,7 +58,7 @@ export default function ActivatePage() {
       <div className="w-full max-w-2xl">
         <div className="flex flex-col gap-6">
           {/* Welcome Header */}
-          <div className="text-center space-y-2">
+          <div className="text-center space-y-2 mb-4">
             <div className="flex items-center justify-center mb-4">
               <div className="rounded-full bg-primary/10 p-3">
                 <Sparkles className="h-8 w-8 text-primary" />
@@ -90,7 +90,7 @@ export default function ActivatePage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="rounded-lg bg-background p-6 border">
                     <h3 className="font-bold text-xl">{selectedPlan.title}</h3>
                     <p className="text-3xl font-bold text-primary mt-2">
@@ -202,7 +202,7 @@ export default function ActivatePage() {
           )}
 
           {/* Additional Info */}
-          <Card className="bg-muted/30">
+          <Card className="bg-muted/30 mt-4">
             <CardContent>
               <div className="text-center space-y-2">
                 <h2 className="text-xl font-medium mb-3">What happens next?</h2>

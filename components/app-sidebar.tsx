@@ -1,21 +1,19 @@
 "use client";
 
 import * as React from "react";
-import { Settings2, Home, CreditCard } from "lucide-react";
-import Link from "next/link";
+import { Settings2, Home, CreditCard, Users } from "lucide-react";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { createClient } from "@/lib/supabase/client";
+import { useTeam } from "@/hooks/use-team";
 
 const data = {
   navMain: [
@@ -49,6 +47,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { teams, currentTeam, switchTeam } = useTeam();
   const [user, setUser] = React.useState<{
     name: string;
     email: string;
@@ -121,6 +120,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     };
   }, []);
 
+  // Transform teams data for TeamSwitcher component
+  const teamsForSwitcher = teams.map((team) => ({
+    name: team.team_name,
+    logo: Users,
+    plan: team.role_name,
+  }));
+
+  // Find the index of the current team
+  const activeTeamIndex = currentTeam
+    ? teams.findIndex((team) => team.team_id === currentTeam.id)
+    : 0;
+
+  // Handle team switching
+  const handleTeamChange = React.useCallback(
+    (index: number) => {
+      const selectedTeam = teams[index];
+      if (selectedTeam) {
+        switchTeam(selectedTeam.team_id);
+      }
+    },
+    [teams, switchTeam]
+  );
+
   // Show loading state or default user while fetching
   const displayUser = user || {
     name: "Loading...",
@@ -131,20 +153,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link href="/">
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-medium text-sidebar-accent-foreground font-serif text-xl">
-                    Best Day Phone
-                  </span>
-                  <span className="text-xs text-muted-foreground">0.1.0</span>
-                </div>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <TeamSwitcher
+          teams={teamsForSwitcher}
+          activeTeamIndex={activeTeamIndex}
+          onTeamChange={handleTeamChange}
+        />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

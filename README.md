@@ -2,28 +2,20 @@
 
 A companion that's always there — so they're never alone, and you can finally breathe.
 
-## About
-
 Best Day Phone is an AI companion inside a familiar rotary phone, designed specifically for people with Alzheimer's and dementia. The form factor is intentional — people with dementia remember things from childhood most strongly, and rotary phones are iconic to that era.
-
-### Target Audiences
-
-**Buyer (Primary):** Caregivers — adult children, family members, sometimes friends seeking peace of mind and visibility into their loved one's wellbeing.
-
-**User (Secondary):** Elderly people with Alzheimer's or dementia (70+) who need a familiar device with zero learning curve and patient companionship.
 
 ## Tech Stack
 
 This is a [Next.js](https://nextjs.org) project built with:
 
-- Next.js 15+ (App Router)
-- React 19
-- TypeScript
-- Tailwind CSS
-- shadcn/ui (component library)
-- Supabase (authentication & database)
-- Stripe (payment processing)
-- pnpm package manager
+- **Next.js 16** with App Router
+- **React 19**
+- **TypeScript 5**
+- **Tailwind CSS 4**
+- **shadcn/ui** — Radix UI-based component library
+- **Supabase** — Authentication, database, and Row Level Security
+- **Stripe** — Payment processing and subscription management
+- **pnpm** — Package manager
 
 ## Getting Started
 
@@ -76,6 +68,148 @@ pnpm dlx shadcn@latest add button
 
 Replace `button` with any available component (e.g., `card`, `dialog`, `accordion`). Components will be added to the `components/ui` directory and can be customized as needed.
 
+## Database Management
+
+This project uses Supabase for database management with local development support via the [Supabase CLI](https://supabase.com/docs/guides/cli).
+
+### Prerequisites
+
+Install the Supabase CLI:
+
+```bash
+# macOS (Homebrew)
+brew install supabase/tap/supabase
+
+# Other platforms
+npm install -g supabase
+```
+
+Generate TypeScript types from your Supabase database schema:
+
+```bash
+npx supabase gen types typescript --project-id sfstxiekmyyvpelokzrt > types/database.types.ts
+```
+
+### Link to Remote Project
+
+Link your local project to your remote Supabase project:
+
+```bash
+supabase link --project-ref sfstxiekmyyvpelokzrt
+```
+
+You can find your project ref in your Supabase project settings URL.
+
+### Common Commands
+
+**Start Local Development:**
+
+```bash
+supabase start
+```
+
+Starts a local Supabase stack (Postgres, Auth, Storage, etc.) using Docker. This is useful for local development and testing.
+
+**Stop Local Development:**
+
+```bash
+supabase stop
+```
+
+Stops the local Supabase stack.
+
+**Check Status:**
+
+```bash
+supabase status
+```
+
+Shows the status of your local Supabase services including URLs and access keys.
+
+**Reset Local Database:**
+
+```bash
+supabase db reset
+```
+
+Drops and recreates the local database, then applies all migrations from scratch. Useful when testing migration changes or starting fresh.
+
+**Push Migrations to Remote:**
+
+```bash
+supabase db push
+```
+
+Pushes any unapplied local migrations to your remote Supabase database. This is how you deploy schema changes to production.
+
+**List Migrations:**
+
+```bash
+# List local and remote migration status
+supabase migration list --linked
+
+# List local migrations only
+supabase migration list --local
+```
+
+Shows which migrations have been applied locally and remotely, helping you track deployment status.
+
+**Create New Migration:**
+
+```bash
+supabase migration new migration_name
+```
+
+Creates a new migration file in `supabase/migrations/` with a timestamp prefix.
+
+**Generate Migration from Schema Diff:**
+
+```bash
+supabase db diff -f migration_name
+```
+
+Compares your local database schema to the migration history and generates a new migration file with the differences. Useful for capturing manual schema changes.
+
+**Pull Remote Schema:**
+
+```bash
+supabase db pull
+```
+
+Generates a migration file that represents the current state of your remote database. Useful for syncing your local environment with production changes.
+
+**Repair Migration History:**
+
+```bash
+supabase migration repair --status reverted 00001 00002
+```
+
+Marks migrations as reverted in the remote database. Useful for fixing migration state mismatches.
+
+### Multi-Tenant Architecture
+
+This project implements a comprehensive multi-tenant architecture:
+
+- **Team-based Tenancy:** Each family/household is an isolated tenant
+- **Row Level Security (RLS):** Database-level data isolation enforced by PostgreSQL policies
+- **Role-based Access Control:**
+  - **Primary Caregiver:** Full access to manage team, devices, and subscriptions
+  - **Secondary Caregiver:** Read-only access to team data
+- **Per-Device Subscriptions:** Each phone device has its own Stripe subscription
+- **Care Recipients Tracking:** Manage multiple care recipients per team
+- **Automatic Team Creation:** Teams are automatically created on user signup
+
+The architecture includes:
+
+- 7 database tables with foreign key relationships
+- Comprehensive RLS policies on all tables
+- Helper functions for common team operations
+- Database triggers for data integrity
+- React Context provider for client-side team state
+- Server-side team utilities for secure data access
+
+See `docs/IMPLEMENTATION_SUMMARY.md` for detailed implementation documentation.
+
 ## Authentication
 
 This project uses [Supabase](https://supabase.com) for authentication and user management. The authentication system includes:
@@ -104,19 +238,19 @@ Routes under `/dashboard/*` require authentication. Unauthenticated users are au
 
 Available dashboard routes:
 
-- `/dashboard` — Dashboard home
+- `/dashboard` — Dashboard home with team statistics
 - `/dashboard/account` — User profile and account settings
 - `/dashboard/settings` — System settings and preferences
-- `/dashboard/subscriptions` — User subscriptions and billing
-- `/dashboard/subscriptions/confirmation` — Subscription confirmation page
+- `/dashboard/team/settings` — Team management and member roles
+- `/dashboard/subscriptions` — Subscription management and billing
+- `/dashboard/subscriptions/confirmation` — Post-checkout confirmation page
 
 ### Client Usage
 
-The project includes three Supabase client configurations:
+The project includes two Supabase client configurations:
 
 - **Browser Client** (`lib/supabase/client.ts`) — Use in Client Components
 - **Server Client** (`lib/supabase/server.ts`) — Use in Server Components and API Routes
-- **Middleware** (`lib/supabase/proxy.ts`) — Handles session refresh in `middleware.ts`
 
 ### Example: Accessing User Data
 
@@ -134,17 +268,60 @@ export default async function ProtectedPage() {
 }
 ```
 
+### Team Context Provider
+
+The application includes a React Context provider for managing team state on the client:
+
+```typescript
+// In a Client Component
+"use client";
+import { useTeam } from "@/hooks/use-team";
+
+export function TeamInfo() {
+  const { currentTeam, isLoading, switchTeam } = useTeam();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h2>{currentTeam?.name}</h2>
+      <p>Role: {currentTeam?.role_name}</p>
+    </div>
+  );
+}
+```
+
+### Server-Side Team Helpers
+
+For server-side operations, use the team helper functions in `lib/supabase/teams.ts`:
+
+```typescript
+import { createClient } from "@/lib/supabase/server";
+import { getPrimaryTeam, getTeamPhoneDevices } from "@/lib/supabase/teams";
+
+export default async function DashboardPage() {
+  const supabase = await createClient();
+  const { data: team } = await getPrimaryTeam(supabase);
+  const { data: devices } = await getTeamPhoneDevices(supabase, team?.id);
+
+  // Team data is automatically filtered by RLS
+  return <div>...</div>;
+}
+```
+
 ## Payment Processing
 
 This project uses [Stripe](https://stripe.com) for subscription and payment processing.
 
 ### Features
 
-- **Stripe Buy Button:** Embedded checkout for phone and subscription services
-- **Multiple Pricing Tiers:** Base WiFi (~$75/mo), Mid (~$100/mo), Premium 5G (~$150/mo)
+- **Stripe Checkout:** Embedded buy button checkout flow for subscriptions
+- **Two Pricing Tiers:**
+  - **Base WiFi:** $25/month — Requires WiFi connection
+  - **Premium 5G:** $50/month — Built-in 5G, works anywhere
 - **Device Included:** All subscriptions include the Best Day Phone device at no extra cost
-- **Authentication-Gated:** Payment options only visible to logged-in users
-- **Subscription Confirmation:** Detailed payment confirmation page with transaction details
+- **Authentication-Gated:** Checkout only available to logged-in users
+- **Subscription Confirmation:** Detailed post-checkout confirmation page with session details
 - **Customer Portal:** Integrated Stripe Customer Portal for self-service subscription management
 
 ### Setup
@@ -163,20 +340,22 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_publishable_key_here
 
 3. Create products and pricing in your Stripe Dashboard
 
-4. Generate Stripe Buy Buttons for each pricing tier:
+4. Generate Stripe payment links for each pricing tier:
 
    - Go to **Products** in your Stripe Dashboard
-   - Select a product and click **Create payment link** or **Buy button**
-   - Copy the buy button ID (starts with `buy_btn_`)
+   - Select a product and click **Create payment link**
+   - Configure the payment link with your product details
+   - Copy the payment link URL
 
-5. Update the pricing options in `app/(marketing)/page.tsx`:
+5. Update the pricing options in `lib/constants/pricing.ts`:
 
 ```typescript
-const pricingOptions: PricingOption[] = [
+export const pricingOptions: PricingOption[] = [
   {
     title: "Base WiFi",
-    price: "$75",
-    stripeBuyButtonId: "buy_btn_YOUR_BUTTON_ID",
+    price: "$25",
+    priceId: "price_YOUR_PRICE_ID",
+    paymentLink: "https://buy.stripe.com/YOUR_LINK",
     // ... other options
   },
 ];
@@ -224,26 +403,45 @@ The project is currently configured with Stripe test keys. Use [Stripe test card
 - Decline: `4000 0000 0000 0002`
 - 3D Secure: `4000 0025 0000 3155`
 
+## HTML Prototypes
+
+The `docs/design/` directory contains static HTML prototypes for rapid design iteration. These prototypes use the Best Day Phone design system and can be viewed using a live-reload development server.
+
+### Running the Prototype Server
+
+```bash
+pnpm docs:design
+```
+
+This starts a local server at [http://127.0.0.1:5500](http://127.0.0.1:5500) with hot reload enabled.
+
+### Available Prototypes
+
+- `home-v3.html` — Latest homepage design
+- `about.html` — About page
+- `mission.html` — Mission and values
+- `contact.html` — Contact page
+- `style-guide.html` — Design system reference
+- `privacy.html` — Privacy policy
+- `terms.html` — Terms of service
+
+All prototypes share common components from `docs/design/shared/` including navigation, footer, and the Best Day Phone theme.
+
 ## Project Resources
 
 - **Cortex Documentation:** [cortex.misfitsandmachines.com](https://cortex.misfitsandmachines.com) — PRD, feature specs, user research
 - **Figma Designs:** [Best Day Figma](https://www.figma.com/design/zGweAGlA8vZuPj0SQBYuTf/Best-Day)
 - **Project Management:** [Wrike Workspace](https://www.wrike.com/workspace.htm?acc=2034463#/folder/4325791241/timeline3)
 
-## Design Principles
+## Design & Messaging
 
-- **Tone:** Warm, human, not clinical
-- **Colors:** Warm cream backgrounds with rich accent colors (burgundy, forest green)
-- **Typography:** Elegant serif for headlines, clean sans for body
-- **Spacing:** Generous whitespace
+This project follows specific design and messaging guidelines documented in `.cursor/rules/`:
 
-## Messaging Guidelines
-
-- Lead with empathy and emotional outcomes
-- Focus on benefits, not features
-- Avoid technical jargon and medical claims
-- Use gender-neutral language ("they/them" or "loved one")
-- Frame as a "wellness companion" not a medical device
+- **Design:** Warm, human aesthetic with generous whitespace
+- **Colors:** Warm cream backgrounds with rich accent colors
+- **Typography:** Elegant serif headlines, clean sans body text
+- **Messaging:** Empathy-first, benefit-focused, gender-neutral language
+- **Positioning:** "Wellness companion" (not medical device)
 
 ## Learn More
 
