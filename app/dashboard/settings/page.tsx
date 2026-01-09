@@ -50,7 +50,7 @@ export default async function SettingsPage() {
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Settings</BreadcrumbPage>
+                <BreadcrumbPage>System Settings</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -62,7 +62,9 @@ export default async function SettingsPage() {
           <div className="flex flex-col gap-6 mb-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+                <h1 className="text-3xl font-bold tracking-tight">
+                  System Settings
+                </h1>
                 <p className="text-muted-foreground mt-1">
                   Manage your application preferences and configurations
                 </p>
@@ -187,7 +189,9 @@ export default async function SettingsPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label className="text-base">Two-Factor Authentication</Label>
+                    <Label className="text-base">
+                      Two-Factor Authentication
+                    </Label>
                     <p className="text-sm text-muted-foreground">
                       Add an extra layer of security to your account
                     </p>

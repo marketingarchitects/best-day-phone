@@ -103,8 +103,12 @@ This project uses [Supabase](https://supabase.com) for authentication and user m
 Routes under `/dashboard/*` require authentication. Unauthenticated users are automatically redirected to `/auth/login`.
 
 Available dashboard routes:
+
 - `/dashboard` — Dashboard home
-- `/dashboard/profile` — User profile and account settings
+- `/dashboard/account` — User profile and account settings
+- `/dashboard/settings` — System settings and preferences
+- `/dashboard/subscriptions` — User subscriptions and billing
+- `/dashboard/subscriptions/confirmation` — Subscription confirmation page
 
 ### Client Usage
 

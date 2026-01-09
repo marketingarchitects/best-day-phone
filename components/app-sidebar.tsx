@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Calendar, Settings2, User, Users } from "lucide-react";
+import { Settings2, Home, CreditCard } from "lucide-react";
 import Link from "next/link";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -11,38 +11,36 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { createClient } from "@/lib/supabase/client";
 
 const data = {
   navMain: [
     {
-      title: "Profile",
-      url: "/dashboard/profile",
-      icon: User,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: Home,
     },
     {
-      title: "Caregivers",
-      url: "/dashboard/profile",
-      icon: Users,
+      title: "Subscriptions",
+      url: "/dashboard/subscriptions",
+      icon: CreditCard,
     },
-    {
-      title: "Scheduling",
-      url: "/dashboard/profile",
-      icon: Calendar,
-    },
+
     {
       title: "Settings",
       url: "/dashboard/settings",
       icon: Settings2,
-      isActive: true,
       items: [
         {
-          title: "Subitem 1",
-          url: "/dashboard/settings",
+          title: "Account",
+          url: "/dashboard/account",
         },
         {
-          title: "Subitem 2",
+          title: "System Settings",
           url: "/dashboard/settings",
         },
       ],
@@ -133,9 +131,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <Link href="/" className="flex items-center">
-          <h1 className="text-xl font-bold font-serif">Best Day Phone</h1>
-        </Link>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/">
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-medium text-sidebar-accent-foreground font-serif text-xl">
+                    Best Day Phone
+                  </span>
+                  <span className="text-xs text-muted-foreground">0.1.0</span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />

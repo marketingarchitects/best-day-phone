@@ -22,7 +22,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-export default async function ProfilePage() {
+export default async function AccountPage() {
   const supabase = await createClient();
 
   // Get user data
@@ -78,7 +78,7 @@ export default async function ProfilePage() {
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Profile</BreadcrumbPage>
+                <BreadcrumbPage>Account</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -90,7 +90,7 @@ export default async function ProfilePage() {
           <div className="flex flex-col gap-6 mb-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold tracking-tight">Profile</h1>
+                <h1 className="text-3xl font-bold tracking-tight">Account</h1>
                 <p className="text-muted-foreground mt-1">
                   Manage your account information and settings
                 </p>
