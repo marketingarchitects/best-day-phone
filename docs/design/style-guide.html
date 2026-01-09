@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Style Guide — Best Day Phone Design System</title>
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<!-- BDP Shared Theme -->
+<link rel="stylesheet" href="shared/bdp-theme.css"/>
+<script src="shared/bdp-tailwind.js"></script>
+<script src="shared/include.js"></script>
+<style>
+/* Experimental 3D Button Effect */
+.btn-3d {
+    border-radius: 999px;
+    display: inline-flex;
+    position: relative;
+}
+
+.btn-3d__content {
+    align-items: center;
+    background-color: #D97706;
+    border: 2px solid #3B2F2F;
+    border-radius: inherit;
+    color: white;
+    display: flex;
+    font-weight: 600;
+    gap: 0.75rem;
+    height: 3.5rem;
+    justify-content: center;
+    min-width: 100%;
+    padding: 0 2rem;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 2;
+}
+
+.btn-3d.--outline .btn-3d__content {
+    background-color: #FFFBF7;
+    color: #3B2F2F;
+}
+
+.btn-3d.--green .btn-3d__content {
+    background-color: #4D7C5D;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-3d:hover .btn-3d__content {
+        transform: translate3d(6px, 6px, 0);
+    }
+}
+
+.btn-3d::after {
+    background-image: url(assets/texture.png);
+    background-size: cover;
+    border: 2px solid #3B2F2F;
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate3d(6px, 6px, 0);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    width: 100%;
+    z-index: 1;
+}
+
+.btn-3d__arrow {
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-3d:hover .btn-3d__arrow {
+    transform: translateX(0.5rem);
+}
+
+/* Code block styling */
+.code-block {
+    background: #1F1A17;
+    border-radius: 0.75rem;
+    color: #FDEEDC;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    padding: 1.5rem;
+}
+
+/* Section divider */
+.section-divider {
+    background: linear-gradient(90deg, transparent, #D97706, transparent);
+    height: 2px;
+    margin: 4rem 0;
+}
+
+/* Swatch grid */
+.swatch {
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 2px solid rgba(0,0,0,0.1);
+}
+
+.swatch.--dark {
+    color: white;
+}
+
+.swatch.--light {
+    color: #3B2F2F;
+}
+</style>
+</head>
+<body class="bg-background-light text-gray-800 font-sans antialiased">
+
+<!-- Simple Nav -->
+<nav class="sticky top-0 z-50 bg-background-light/95 backdrop-blur-md border-b border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <a href="home-v3.html" class="flex items-center gap-3">
+                <img src="assets/logo.svg" alt="Best Day Phone" class="h-10 w-auto" />
+                <span class="text-sm font-bold text-gray-400">/ Style Guide</span>
+            </a>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="#colors" class="text-gray-600 hover:text-primary transition font-medium">Colors</a>
+                <a href="#typography" class="text-gray-600 hover:text-primary transition font-medium">Typography</a>
+                <a href="#buttons" class="text-gray-600 hover:text-primary transition font-medium">Buttons</a>
+                <a href="#components" class="text-gray-600 hover:text-primary transition font-medium">Components</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<header class="py-20 bg-surface-light border-b border-orange-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="font-display text-5xl md:text-6xl font-bold text-secondary mb-4">
+            Design System
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            The visual language of Best Day Phone. Warm, human, and accessible — designed for families caring for loved ones with memory loss.
+        </p>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <!-- Colors Section -->
+    <section id="colors" class="scroll-mt-24">
+        <h2 class="font-display text-3xl font-bold text-secondary mb-2">Colors</h2>
+        <p class="text-gray-600 mb-8">Warm and inviting. Never cold or clinical. Built for trust and comfort.</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="swatch --dark" style="background: #D97706;">
+                <span>Primary<br/>#D97706</span>
+            </div>
+            <div class="swatch --dark" style="background: #3B2F2F;">
+                <span>Secondary<br/>#3B2F2F</span>
+            </div>
+            <div class="swatch --light" style="background: #FFFBF7;">
+                <span>Background<br/>#FFFBF7</span>
+            </div>
+            <div class="swatch --light" style="background: #FDEEDC;">
+                <span>Surface<br/>#FDEEDC</span>
+            </div>
+            <div class="swatch --dark" style="background: #4D7C5D;">
+                <span>Accent Green<br/>#4D7C5D</span>
+            </div>
+            <div class="swatch --light" style="background: #FCE7F3;">
+                <span>Soft Pink<br/>#FCE7F3</span>
+            </div>
+        </div>
+
+        <h3 class="font-display text-xl font-bold text-secondary mt-12 mb-4">Dark Mode</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="swatch --dark" style="background: #1F1A17;">
+                <span>Background Dark<br/>#1F1A17</span>
+            </div>
+            <div class="swatch --dark" style="background: #322822;">
+                <span>Surface Dark<br/>#322822</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Typography Section -->
+    <section id="typography" class="scroll-mt-24">
+        <h2 class="font-display text-3xl font-bold text-secondary mb-2">Typography</h2>
+        <p class="text-gray-600 mb-8">Playfair Display for headlines (elegant, warm), Inter for body (clean, readable).</p>
+
+        <div class="bg-white rounded-2xl border border-orange-100 p-8 mb-8">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Headlines — Playfair Display</h3>
+            <div class="space-y-4">
+                <p class="font-display text-6xl font-bold text-secondary">The Best Day Phone</p>
+                <p class="font-display text-5xl font-bold text-secondary">A companion that calls</p>
+                <p class="font-display text-4xl font-bold text-secondary">Designed for people with dementia</p>
+                <p class="font-display text-3xl font-bold text-secondary">Instantly familiar. Zero learning curve.</p>
+                <p class="font-display text-2xl font-bold text-secondary">Give yourself time to breathe</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-orange-100 p-8 mb-8">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Body Text — Inter</h3>
+            <div class="space-y-4 max-w-2xl">
+                <p class="text-xl text-gray-700">Large body text for hero sections. You can't always be there. But you never stop worrying.</p>
+                <p class="text-lg text-gray-600">Standard body copy. A familiar voice inside a familiar phone — for people with Alzheimer's and dementia. No screens. No confusion.</p>
+                <p class="text-base text-gray-600">Regular paragraph text. The device costs us $100 to make, but we'll send it to you at no charge. You just pay the monthly subscription.</p>
+                <p class="text-sm text-gray-500">Small text for captions and secondary information. Free shipping. Cancel anytime.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-orange-100 p-8">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Fluid Type Scale</h3>
+            <div class="code-block">
+<pre>:root {
+    --step--2: clamp(0.6944rem, 0.6596rem + 0.1739vw, 0.8rem);
+    --step--1: clamp(0.8333rem, 0.7778rem + 0.2778vw, 1rem);
+    --step-0: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+    --step-1: clamp(1.2rem, 1.0674rem + 0.6630vw, 1.5625rem);
+    --step-2: clamp(1.44rem, 1.2413rem + 0.9935vw, 1.9531rem);
+    --step-3: clamp(1.728rem, 1.4374rem + 1.4529vw, 2.4414rem);
+    --step-4: clamp(2.0736rem, 1.6573rem + 2.0815vw, 3.0518rem);
+    --step-5: clamp(2.4883rem, 1.9022rem + 2.9304vw, 3.8147rem);
+}</pre>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Buttons Section -->
+    <section id="buttons" class="scroll-mt-24">
+        <h2 class="font-display text-3xl font-bold text-secondary mb-2">Buttons</h2>
+        <p class="text-gray-600 mb-8">Multiple styles for different contexts. All with generous tap targets for accessibility.</p>
+
+        <!-- Standard Buttons -->
+        <div class="bg-white rounded-2xl border border-orange-100 p-8 mb-8">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Standard Buttons</h3>
+            <div class="flex flex-wrap gap-4 items-center">
+                <a class="inline-flex items-center px-8 py-4 bg-primary text-white rounded-full font-medium shadow-lg shadow-primary/30 hover:bg-opacity-90 hover:-translate-y-1 transition-all" href="#">
+                    Primary Button
+                    <span class="material-icons-round ml-2">arrow_forward</span>
+                </a>
+                <a class="inline-flex items-center px-8 py-4 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-all" href="#">
+                    Outline Button
+                </a>
+                <a class="inline-flex items-center px-8 py-4 bg-accent-green text-white rounded-full font-medium hover:bg-opacity-90 transition-all" href="#">
+                    Green Accent
+                </a>
+                <button class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm text-secondary border border-gray-300 rounded-full font-medium hover:bg-gray-50 transition-colors">
+                    <span class="material-icons-round mr-2">play_circle</span>
+                    Ghost Button
+                </button>
+            </div>
+        </div>
+
+        <!-- 3D Experimental Buttons -->
+        <div class="bg-surface-light rounded-2xl border border-orange-100 p-8 mb-8">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">3D Button Effect</h3>
+            <p class="text-gray-500 text-sm mb-6">Experimental — hover reveals a textured shadow layer with a satisfying diagonal shift.</p>
+            
+            <div class="flex flex-wrap gap-6 items-center mb-8">
+                <a class="btn-3d" href="#">
+                    <span class="btn-3d__content">
+                        Start Free Trial
+                        <span class="material-icons-round btn-3d__arrow">arrow_forward</span>
+                    </span>
+                </a>
+                <a class="btn-3d --outline" href="#">
+                    <span class="btn-3d__content">
+                        Learn More
+                        <span class="material-icons-round btn-3d__arrow">arrow_forward</span>
+                    </span>
+                </a>
+                <a class="btn-3d --green" href="#">
+                    <span class="btn-3d__content">
+                        For Care Facilities
+                        <span class="material-icons-round btn-3d__arrow">arrow_forward</span>
+                    </span>
+                </a>
+            </div>
+
+            <details class="mt-4">
+                <summary class="cursor-pointer text-primary font-semibold text-sm hover:underline">View CSS</summary>
+                <div class="code-block mt-4">
+<pre>.btn-3d {
+    border-radius: 999px;
+    display: inline-flex;
+    position: relative;
+}
+
+.btn-3d__content {
+    background-color: #D97706;
+    border: 2px solid #3B2F2F;
+    border-radius: inherit;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 3.5rem;
+    padding: 0 2rem;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 2;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-3d:hover .btn-3d__content {
+        transform: translate3d(6px, 6px, 0);
+    }
+}
+
+.btn-3d::after {
+    background-image: url(assets/texture.png);
+    background-size: cover;
+    border: 2px solid #3B2F2F;
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translate3d(6px, 6px, 0);
+    z-index: 1;
+}</pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- Button Sizes -->
+        <div class="bg-white rounded-2xl border border-orange-100 p-8">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6">Button Sizes</h3>
+            <div class="flex flex-wrap gap-4 items-center">
+                <a class="inline-flex items-center px-6 py-2.5 bg-primary text-white rounded-full font-medium text-sm" href="#">
+                    Small
+                </a>
+                <a class="inline-flex items-center px-8 py-3.5 bg-primary text-white rounded-full font-medium" href="#">
+                    Medium
+                </a>
+                <a class="inline-flex items-center px-10 py-4 bg-primary text-white rounded-full font-medium text-lg" href="#">
+                    Large
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Components Section -->
+    <section id="components" class="scroll-mt-24">
+        <h2 class="font-display text-3xl font-bold text-secondary mb-2">Components</h2>
+        <p class="text-gray-600 mb-8">Reusable UI patterns from the Best Day Phone design.</p>
+
+        <!-- Cards -->
+        <h3 class="font-display text-xl font-bold text-secondary mb-4">Cards</h3>
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-100">
+                <img src="assets/phone.png" alt="Phone" class="w-16 h-16 object-contain mb-4" />
+                <h4 class="font-display font-bold text-xl mb-2 text-secondary">Problem Card</h4>
+                <p class="text-gray-600 text-sm">People with dementia remember childhood most strongly. Smartphones will never feel familiar.</p>
+            </div>
+            <div class="bg-soft-pink p-8 rounded-2xl">
+                <span class="text-4xl text-pink-400 font-serif leading-none">"</span>
+                <p class="text-gray-800 mb-6 font-medium">
+                    She uses it almost two and a half hours a day. It let me leave to run errands without the guilt.
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center">
+                        <span class="material-icons-round text-pink-600">person</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-secondary">Testimonial Card</h4>
+                        <p class="text-xs text-gray-500">Soft pink background</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-2 border-primary rounded-2xl p-8 bg-white relative">
+                <div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl">FEATURED</div>
+                <h4 class="font-display font-bold text-xl mb-2 text-secondary">Featured Card</h4>
+                <p class="text-gray-600 text-sm mb-4">Highlighted with primary border and badge.</p>
+                <a class="inline-flex items-center text-primary font-semibold text-sm" href="#">
+                    Learn more <span class="material-icons-round ml-1 text-base">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Badges & Pills -->
+        <h3 class="font-display text-xl font-bold text-secondary mb-4">Badges & Pills</h3>
+        <div class="bg-white rounded-2xl border border-orange-100 p-8 mb-12">
+            <div class="flex flex-wrap gap-4 items-center">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-gray-700 text-sm font-semibold border border-gray-200">
+                    <span class="material-icons-round text-base text-primary">favorite</span>
+                    Tag with Icon
+                </span>
+                <span class="px-3 py-1 rounded-full border border-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    Label
+                </span>
+                <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                    MOST POPULAR
+                </span>
+                <span class="bg-accent-green text-white text-xs font-bold px-3 py-1 rounded-full">
+                    CARE FACILITIES
+                </span>
+            </div>
+        </div>
+
+        <!-- Feature List -->
+        <h3 class="font-display text-xl font-bold text-secondary mb-4">Feature Lists</h3>
+        <div class="bg-white rounded-2xl border border-orange-100 p-8 mb-12">
+            <ul class="space-y-4 max-w-md">
+                <li class="flex items-start">
+                    <span class="material-icons-round text-primary text-xl mt-0.5">check_circle</span>
+                    <div class="ml-4">
+                        <h4 class="font-bold text-secondary">Feature Title</h4>
+                        <p class="text-gray-500 text-sm">Secondary description text explaining the feature.</p>
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <span class="material-icons-round text-primary text-xl mt-0.5">check_circle</span>
+                    <div class="ml-4">
+                        <h4 class="font-bold text-secondary">Another Feature</h4>
+                        <p class="text-gray-500 text-sm">More explanation here about this great feature.</p>
+                    </div>
+                </li>
+                <li class="flex items-center text-gray-600">
+                    <span class="material-icons-round text-gray-400 mr-4">wifi</span>
+                    Requires WiFi connection
+                </li>
+            </ul>
+        </div>
+
+        <!-- Jagged Edges -->
+        <h3 class="font-display text-xl font-bold text-secondary mb-4">Section Dividers (Jagged Edges)</h3>
+        <div class="bg-surface-light rounded-2xl border border-orange-100 p-8 relative overflow-hidden mb-12">
+            <p class="text-gray-600 text-sm mb-8">Organic, hand-drawn feel. Separates sections with warmth instead of hard lines.</p>
+            <div class="h-24 bg-secondary relative">
+                <svg class="absolute -bottom-1 left-0 w-full" style="height: 20px;" preserveAspectRatio="none" viewBox="0 0 1200 20" fill="#FDEEDC">
+                    <polygon points="0,20 0,12 220,8 450,14 680,6 850,12 1050,9 1200,11 1200,20"/>
+                </svg>
+            </div>
+            <details class="mt-6">
+                <summary class="cursor-pointer text-primary font-semibold text-sm hover:underline">View SVG</summary>
+                <div class="code-block mt-4">
+<pre>&lt;svg class="absolute -bottom-1 left-0 w-full" 
+     style="height: 20px;" 
+     preserveAspectRatio="none" 
+     viewBox="0 0 1200 20" 
+     fill="#FDEEDC"&gt;
+    &lt;polygon points="0,20 0,12 220,8 450,14 680,6 850,12 1050,9 1200,11 1200,20"/&gt;
+&lt;/svg&gt;</pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <h3 class="font-display text-xl font-bold text-secondary mb-4">FAQ Accordion</h3>
+        <div class="max-w-2xl mb-12">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 mb-3">
+                <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.material-icons-round').classList.toggle('rotate-180')">
+                    <span class="font-bold text-lg text-secondary">Will they actually use it?</span>
+                    <span class="material-icons-round text-primary transform transition-transform duration-200">expand_more</span>
+                </button>
+                <div class="px-6 pb-4 hidden text-gray-600">
+                    <p>That's the whole point. It looks like a phone they've used their whole life. It rings. They pick up. No learning curve, no tech support calls to you.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
+                <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.material-icons-round').classList.toggle('rotate-180')">
+                    <span class="font-bold text-lg text-secondary">What if something goes wrong?</span>
+                    <span class="material-icons-round text-primary transform transition-transform duration-200">expand_more</span>
+                </button>
+                <div class="px-6 pb-4 hidden text-gray-600">
+                    <p>If they say certain keywords — "help," "I fell," "I can't breathe" — you're notified immediately.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <h3 class="font-display text-xl font-bold text-secondary mb-4">Stats Display</h3>
+        <div class="bg-white rounded-2xl border border-orange-100 p-8">
+            <div class="flex flex-wrap justify-center gap-12 text-center">
+                <div>
+                    <p class="text-5xl font-display font-bold text-primary flex items-baseline justify-center">
+                        2.5<span class="text-xl ml-1">hrs</span>
+                    </p>
+                    <p class="text-sm text-gray-500 mt-2">Average daily use</p>
+                </div>
+                <div>
+                    <p class="text-5xl font-display font-bold text-primary flex items-baseline justify-center">
+                        7<span class="text-xl ml-1">hrs</span>
+                    </p>
+                    <p class="text-sm text-gray-500 mt-2">Longest session</p>
+                </div>
+                <div>
+                    <p class="text-5xl font-display font-bold text-primary flex items-baseline justify-center">
+                        13<span class="text-xl ml-1">M</span>
+                    </p>
+                    <p class="text-sm text-gray-500 mt-2">Americans affected</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Iconography -->
+    <section id="icons" class="scroll-mt-24 mb-16">
+        <h2 class="font-display text-3xl font-bold text-secondary mb-2">Iconography</h2>
+        <p class="text-gray-600 mb-8">Material Icons Round — friendly, approachable, consistent.</p>
+
+        <div class="bg-white rounded-2xl border border-orange-100 p-8">
+            <div class="grid grid-cols-4 md:grid-cols-8 gap-6">
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">favorite</span>
+                    <span class="text-xs text-gray-500">favorite</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">check_circle</span>
+                    <span class="text-xs text-gray-500">check_circle</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">arrow_forward</span>
+                    <span class="text-xs text-gray-500">arrow_forward</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">play_circle</span>
+                    <span class="text-xs text-gray-500">play_circle</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">psychology</span>
+                    <span class="text-xs text-gray-500">psychology</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">verified_user</span>
+                    <span class="text-xs text-gray-500">verified_user</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">schedule</span>
+                    <span class="text-xs text-gray-500">schedule</span>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-icons-round text-3xl text-primary">expand_more</span>
+                    <span class="text-xs text-gray-500">expand_more</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-secondary text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+        <p class="text-gray-400 text-sm">Best Day Phone Design System — Internal Use</p>
+        <a href="home-v3.html" class="text-primary hover:underline text-sm mt-2 inline-block">← Back to Homepage</a>
+    </div>
+</footer>
+
+</body>
+</html>
