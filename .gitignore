@@ -39,4 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Personal MCP configuration (could be publicly shared if we're okay with exposing Cortex API key to repository)
 .cursor/mcp.json
+
+# Personal Cursor rules (not shared with team)
+.cursor/rules/personal-*.mdc
+
+# Editor settings (personal preference)
+.vscode/
+.kiro/
+
+# Playwright MCP
+.playwright-mcp/
+
+# Scraped examples (reference only)
+/examples/

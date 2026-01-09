@@ -97,6 +97,16 @@ page_create with:
   - pageContent: "## Heading\n\nContent here"
 ```
 
+### Create a child page (spaceId auto-derived from parent)
+
+```
+page_create with:
+  - title: "Child Page"
+  - parentId: "<parent-page-id>"
+  - format: "markdown"
+  - pageContent: "Content here"
+```
+
 ### Update a specific section
 
 ```

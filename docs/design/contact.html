@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Contact Us - Best Day Phone</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <!-- BDP Shared Theme -->
+    <link rel="stylesheet" href="shared/bdp-theme.css"/>
+    <script src="shared/bdp-tailwind.js"></script>
+    <script src="shared/include.js"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-sans antialiased">
+
+<div data-include="shared/nav.html"></div>
+
+<!-- Hero -->
+<section class="py-20 bg-surface-light dark:bg-surface-dark">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-secondary dark:text-white mb-6">Contact Us</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+            Have questions? We're here to help. Reach out and we'll get back to you as soon as possible.
+        </p>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="py-20 bg-background-light dark:bg-background-dark">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <form class="space-y-6">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="Jane Smith">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="jane@example.com">
+            </div>
+            <div>
+                <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                <select id="subject" name="subject" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    <option>General Inquiry</option>
+                    <option>Product Questions</option>
+                    <option>Facility Partnerships</option>
+                    <option>Press & Media</option>
+                    <option>Support</option>
+                </select>
+            </div>
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-surface-dark focus:ring-2 focus:ring-primary focus:border-transparent transition" placeholder="How can we help?"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-primary hover:bg-opacity-90 text-white px-8 py-4 rounded-xl font-medium shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5">
+                Send Message
+            </button>
+        </form>
+        
+        <div class="mt-12 pt-12 border-t border-gray-200 dark:border-gray-700">
+            <h3 class="font-display text-xl font-bold text-secondary dark:text-white mb-4">Other Ways to Reach Us</h3>
+            <div class="space-y-4 text-gray-600 dark:text-gray-300">
+                <p class="flex items-center">
+                    <span class="material-icons-round text-primary mr-3">email</span>
+                    hello@bestdayphone.com
+                </p>
+                <p class="flex items-center">
+                    <span class="material-icons-round text-primary mr-3">phone</span>
+                    1-800-BEST-DAY
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div data-include="shared/footer.html"></div>
+
+</body>
+</html>
