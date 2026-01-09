@@ -47,9 +47,9 @@ export default async function Header({ className }: HeaderProps) {
           {user ? (
             <>
               <Button asChild>
-                <Link href="/protected">Profile</Link>
+                <Link href="/dashboard">Dashboard</Link>
               </Button>
-              <LogoutButton />
+              {/* <LogoutButton /> */}
             </>
           ) : (
             <Button asChild>

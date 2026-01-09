@@ -1,8 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
-import Script from "next/script";
-
-const STRIPE_PUBLISHABLE_KEY =
-  "pk_test_51SnMurC8UztKoaSsrFkmahUFYslDGJIOdrQXSHZd53WwTFdQUCPVSO6dzuh8nd5tApgzsWwwn6W9nCMZPga5yBWE00qHrOF2BR";
+import Link from "next/link";
 
 interface PricingOption {
   title: string;
@@ -10,7 +8,7 @@ interface PricingOption {
   price: string;
   period?: string;
   features: string[];
-  stripeBuyButtonId: string;
+  paymentLink: string;
   badge?: string;
 }
 
@@ -18,9 +16,9 @@ const pricingOptions: PricingOption[] = [
   {
     title: "Base WiFi",
     description: "Perfect for home use with WiFi connection",
-    price: "$75",
+    price: "$25",
     period: "/month",
-    stripeBuyButtonId: "buy_btn_1SnWMoC8UztKoaSso9knN3Cz",
+    paymentLink: "https://buy.stripe.com/test_4gM3cu1VOaHr5HZ5Aea7C02",
     features: [
       "Best Day Phone device (free)",
       "Daily companion calls",
@@ -29,47 +27,24 @@ const pricingOptions: PricingOption[] = [
       "30-day money-back guarantee",
     ],
   },
-  // Add more tiers here as needed:
-  // {
-  //   title: "Premium 5G",
-  //   description: "Works anywhere, perfect for care facilities",
-  //   price: "$150",
-  //   period: "/month",
-  //   stripeBuyButtonId: "YOUR_STRIPE_BUTTON_ID_HERE",
-  //   badge: "MOST POPULAR",
-  //   features: [
-  //     "Best Day Phone device (free)",
-  //     "Built-in 5G connectivity",
-  //     "Works in care facilities",
-  //     "Daily companion calls",
-  //     "Priority support",
-  //     "30-day money-back guarantee",
-  //   ],
-  // },
-];
 
-function StripeBuyButton({
-  buyButtonId,
-  publishableKey,
-}: {
-  buyButtonId: string;
-  publishableKey: string;
-}) {
-  return (
-    <div
-      className="drop-shadow-sm"
-      dangerouslySetInnerHTML={{
-        __html: `
-          <stripe-buy-button
-            buy-button-id="${buyButtonId}"
-            publishable-key="${publishableKey}"
-          >
-          </stripe-buy-button>
-        `,
-      }}
-    />
-  );
-}
+  {
+    title: "Premium 5G",
+    description: "Works anywhere, perfect for care facilities",
+    price: "$50",
+    period: "/month",
+    paymentLink: "https://buy.stripe.com/test_9B69AS7g8dTD6M37Ima7C03",
+    badge: "MOST POPULAR",
+    features: [
+      "Best Day Phone device (free)",
+      "Built-in 5G connectivity",
+      "Works in care facilities",
+      "Daily companion calls",
+      "Priority support",
+      "30-day money-back guarantee",
+    ],
+  },
+];
 
 export default async function Home() {
   const supabase = await createClient();
@@ -80,11 +55,7 @@ export default async function Home() {
     <>
       {user && (
         <>
-          <Script
-            src="https://js.stripe.com/v3/buy-button.js"
-            strategy="lazyOnload"
-          />
-          <section className="py-24 bg-white">
+          <section className="py-24 ">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="font-serif text-3xl font-bold mb-4">
@@ -97,7 +68,7 @@ export default async function Home() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {pricingOptions.map((option, index) => (
                   <div
                     key={index}
@@ -149,23 +120,12 @@ export default async function Home() {
                       ))}
                     </ul>
 
-                    <StripeBuyButton
-                      buyButtonId={option.stripeBuyButtonId}
-                      publishableKey={STRIPE_PUBLISHABLE_KEY}
-                    />
+                    <Button asChild size="lg">
+                      <Link href={option.paymentLink}>Subscribe</Link>
+                    </Button>
                   </div>
                 ))}
               </div>
-
-              <p className="text-center text-sm text-muted-foreground mt-12">
-                Questions? Contact us at{" "}
-                <a
-                  href="mailto:support@bestdayphone.com"
-                  className="text-primary hover:underline"
-                >
-                  support@bestdayphone.com
-                </a>
-              </p>
             </div>
           </section>
         </>

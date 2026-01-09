@@ -98,9 +98,13 @@ This project uses [Supabase](https://supabase.com) for authentication and user m
 - `/auth/confirm` — Email confirmation handler
 - `/auth/error` — Authentication error page
 
-### Protected Routes
+### Dashboard Routes
 
-Routes under `/protected/*` require authentication. Unauthenticated users are automatically redirected to `/auth/login`.
+Routes under `/dashboard/*` require authentication. Unauthenticated users are automatically redirected to `/auth/login`.
+
+Available dashboard routes:
+- `/dashboard` — Dashboard home
+- `/dashboard/profile` — User profile and account settings
 
 ### Client Usage
 
