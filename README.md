@@ -144,6 +144,8 @@ This project uses [Stripe](https://stripe.com) for subscription and payment proc
 - **Multiple Pricing Tiers:** Base WiFi (~$75/mo), Mid (~$100/mo), Premium 5G (~$150/mo)
 - **Device Included:** All subscriptions include the Best Day Phone device at no extra cost
 - **Authentication-Gated:** Payment options only visible to logged-in users
+- **Subscription Confirmation:** Detailed payment confirmation page with transaction details
+- **Customer Portal:** Integrated Stripe Customer Portal for self-service subscription management
 
 ### Setup
 
@@ -151,15 +153,23 @@ To configure Stripe payments:
 
 1. Create a [Stripe account](https://dashboard.stripe.com/register) if you don't have one
 
-2. Create products and pricing in your Stripe Dashboard
+2. Add Stripe keys to your `.env.local` file:
 
-3. Generate Stripe Buy Buttons for each pricing tier:
+```bash
+# Stripe Configuration
+STRIPE_SECRET_KEY=sk_test_your_secret_key_here
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_publishable_key_here
+```
+
+3. Create products and pricing in your Stripe Dashboard
+
+4. Generate Stripe Buy Buttons for each pricing tier:
 
    - Go to **Products** in your Stripe Dashboard
    - Select a product and click **Create payment link** or **Buy button**
    - Copy the buy button ID (starts with `buy_btn_`)
 
-4. Update the pricing options in `app/(marketing)/page.tsx`:
+5. Update the pricing options in `app/(marketing)/page.tsx`:
 
 ```typescript
 const pricingOptions: PricingOption[] = [
@@ -172,7 +182,39 @@ const pricingOptions: PricingOption[] = [
 ];
 ```
 
-5. Set your Stripe publishable key in the `STRIPE_PUBLISHABLE_KEY` constant (currently set to test mode)
+### Subscription Confirmation Page
+
+After a successful checkout, customers are redirected to `/dashboard/subscriptions/confirmation?session_id=xxx` where they can view:
+
+- Customer email
+- Plan name and pricing
+- Payment amount and status
+- Payment ID (for reference)
+- Subscription status (Active/Trial/etc.)
+- Billing cycle frequency
+- Next billing date
+- Direct link to manage their subscription
+
+The confirmation page automatically retrieves session details from Stripe using the session ID.
+
+### Customer Portal
+
+The integrated Stripe Customer Portal allows customers to:
+
+- Update payment methods
+- View billing history and download invoices
+- Manage subscription (upgrade, downgrade, cancel)
+- Update billing information
+
+Customers can access the portal via the **"Manage Subscription"** button on the confirmation page, which opens Stripe's hosted portal in a new tab.
+
+### Stripe Utilities
+
+The project includes server-side Stripe utilities in `lib/stripe/server.ts`:
+
+- `getCheckoutSession(sessionId)` — Retrieve checkout session details
+- `getSubscription(subscriptionId)` — Retrieve subscription information
+- `createCustomerPortalSession(customerId, returnUrl)` — Generate customer portal URL
 
 ### Test Mode
 
@@ -180,6 +222,7 @@ The project is currently configured with Stripe test keys. Use [Stripe test card
 
 - Success: `4242 4242 4242 4242`
 - Decline: `4000 0000 0000 0002`
+- 3D Secure: `4000 0025 0000 3155`
 
 ## Project Resources
 

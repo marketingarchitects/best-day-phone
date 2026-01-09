@@ -20,6 +20,11 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { CheckCircle2 } from "lucide-react";
+import {
+  getCheckoutSession,
+  createCustomerPortalSession,
+} from "@/lib/stripe/server";
+import Stripe from "stripe";
 
 export default async function SubscriptionConfirmationPage({
   searchParams,
@@ -42,8 +47,43 @@ export default async function SubscriptionConfirmationPage({
   const params = await searchParams;
   const sessionId = params.session_id;
 
-  // TODO: Verify the Stripe session and retrieve subscription details
-  // const session = await stripe.checkout.sessions.retrieve(sessionId);
+  // Retrieve the Stripe session and subscription details
+  let session: Stripe.Checkout.Session | null = null;
+  let subscription: Stripe.Subscription | null = null;
+  let errorMessage: string | null = null;
+  let customerPortalUrl: string | null = null;
+
+  if (sessionId) {
+    try {
+      session = await getCheckoutSession(sessionId);
+
+      // Extract subscription details if available
+      if (session.subscription && typeof session.subscription === "object") {
+        subscription = session.subscription as Stripe.Subscription;
+      }
+
+      // Create customer portal session for subscription management
+      if (session.customer) {
+        const customerId =
+          typeof session.customer === "string"
+            ? session.customer
+            : session.customer.id;
+
+        const returnUrl = `${
+          process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+        }/dashboard/subscriptions`;
+        const portalSession = await createCustomerPortalSession(
+          customerId,
+          returnUrl
+        );
+        customerPortalUrl = portalSession.url;
+      }
+    } catch (error) {
+      console.error("Error retrieving Stripe session:", error);
+      errorMessage =
+        "Unable to retrieve subscription details. Please contact support.";
+    }
+  }
 
   return (
     <>
@@ -99,51 +139,140 @@ export default async function SubscriptionConfirmationPage({
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4">
-                {sessionId && (
+              {errorMessage ? (
+                <div className="rounded-md bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-400">
+                  {errorMessage}
+                </div>
+              ) : (
+                <div className="grid gap-4">
+                  {sessionId && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <div className="font-medium text-sm text-muted-foreground">
+                        Session ID
+                      </div>
+                      <div className="sm:col-span-2 font-mono text-xs break-all">
+                        {sessionId}
+                      </div>
+                    </div>
+                  )}
+
+                  {session?.customer_email && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <div className="font-medium text-sm text-muted-foreground">
+                        Email
+                      </div>
+                      <div className="sm:col-span-2 text-sm">
+                        {session.customer_email}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     <div className="font-medium text-sm text-muted-foreground">
-                      Session ID
+                      Plan
                     </div>
-                    <div className="sm:col-span-2 font-mono text-xs break-all">
-                      {sessionId}
+                    <div className="sm:col-span-2 text-sm">
+                      {subscription?.items?.data?.[0]?.price?.nickname ||
+                        (typeof subscription?.items?.data?.[0]?.price
+                          ?.product === "string"
+                          ? subscription.items.data[0].price.product
+                          : "Best Day Phone Subscription")}
                     </div>
                   </div>
-                )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  <div className="font-medium text-sm text-muted-foreground">
-                    Plan
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div className="font-medium text-sm text-muted-foreground">
+                      Amount
+                    </div>
+                    <div className="sm:col-span-2 text-sm">
+                      {session?.amount_total ? (
+                        <span className="font-semibold">
+                          ${(session.amount_total / 100).toFixed(2)}{" "}
+                          {session.currency?.toUpperCase()}
+                        </span>
+                      ) : (
+                        <span className="text-muted-foreground">N/A</span>
+                      )}
+                    </div>
                   </div>
-                  <div className="sm:col-span-2 text-sm">
-                    <span className="text-muted-foreground">
-                      Loading subscription details...
-                    </span>
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  <div className="font-medium text-sm text-muted-foreground">
-                    Status
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div className="font-medium text-sm text-muted-foreground">
+                      Status
+                    </div>
+                    <div className="sm:col-span-2 text-sm">
+                      {subscription?.status === "active" ? (
+                        <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                          Active
+                        </span>
+                      ) : subscription?.status === "trialing" ? (
+                        <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900/20 dark:text-blue-400">
+                          Trial
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-900/20 dark:text-gray-400">
+                          {subscription?.status || "Pending"}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className="sm:col-span-2 text-sm">
-                    <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/20 dark:text-green-400">
-                      Active
-                    </span>
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  <div className="font-medium text-sm text-muted-foreground">
-                    Billing Cycle
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div className="font-medium text-sm text-muted-foreground">
+                      Billing Cycle
+                    </div>
+                    <div className="sm:col-span-2 text-sm">
+                      {subscription?.items?.data?.[0]?.price?.recurring
+                        ?.interval ? (
+                        <span className="capitalize">
+                          {subscription.items.data[0].price.recurring.interval}
+                          ly
+                        </span>
+                      ) : (
+                        <span className="text-muted-foreground">N/A</span>
+                      )}
+                    </div>
                   </div>
-                  <div className="sm:col-span-2 text-sm">
-                    <span className="text-muted-foreground">
-                      Loading billing details...
-                    </span>
-                  </div>
+
+                  {subscription &&
+                    "current_period_end" in subscription &&
+                    typeof subscription.current_period_end === "number" && (
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div className="font-medium text-sm text-muted-foreground">
+                          Next Billing Date
+                        </div>
+                        <div className="sm:col-span-2 text-sm">
+                          {new Date(
+                            (subscription.current_period_end as number) * 1000
+                          ).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                  {session?.payment_status && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <div className="font-medium text-sm text-muted-foreground">
+                        Payment Status
+                      </div>
+                      <div className="sm:col-span-2 text-sm">
+                        {session.payment_status === "paid" ? (
+                          <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/20 dark:text-green-400">
+                            Paid
+                          </span>
+                        ) : (
+                          <span className="capitalize">
+                            {session.payment_status}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
+              )}
             </CardContent>
           </Card>
 
@@ -218,12 +347,23 @@ export default async function SubscriptionConfirmationPage({
                 <Button asChild>
                   <Link href="/dashboard">Go to Dashboard</Link>
                 </Button>
-                <Button asChild variant="outline">
-                  <Link href="/dashboard/settings">Manage Settings</Link>
-                </Button>
-                <Button asChild variant="outline">
-                  <Link href="/dashboard/subscription">View Subscription</Link>
-                </Button>
+                {customerPortalUrl ? (
+                  <Button asChild variant="outline">
+                    <a
+                      href={customerPortalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Manage Subscription
+                    </a>
+                  </Button>
+                ) : (
+                  <Button asChild variant="outline">
+                    <Link href="/dashboard/subscriptions">
+                      View Subscription
+                    </Link>
+                  </Button>
+                )}
               </div>
             </CardContent>
           </Card>
