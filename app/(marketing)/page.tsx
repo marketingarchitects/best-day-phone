@@ -112,7 +112,7 @@ export default async function Home() {
                 ))}
               </ul>
 
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="glow">
                 <Link href={user ? option.paymentLink : "/auth/sign-up"}>
                   Get Started
                 </Link>

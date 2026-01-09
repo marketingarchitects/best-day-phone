@@ -2,7 +2,6 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { createClient } from "@/lib/supabase/server";
-import { LogoutButton } from "../logout-button";
 
 interface HeaderProps {
   className?: string;
@@ -52,7 +51,7 @@ export default async function Header({ className }: HeaderProps) {
               {/* <LogoutButton /> */}
             </>
           ) : (
-            <Button asChild>
+            <Button asChild className="glow">
               <Link href="/auth/sign-up">Get Started</Link>
             </Button>
           )}
