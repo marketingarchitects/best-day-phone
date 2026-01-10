@@ -16,7 +16,7 @@ export function GetStartedSection() {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link
             className="inline-flex justify-center items-center px-8 py-4 bg-primary text-white rounded-full font-medium shadow-xl shadow-primary/30 hover:bg-opacity-90 hover:-translate-y-1 transition-all text-lg"
-            href="#pricing"
+            href="/auth/sign-up"
           >
             Start Free Trial — Device Included
           </Link>
