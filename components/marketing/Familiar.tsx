@@ -2,14 +2,10 @@ import { CheckCircle } from "lucide-react";
 
 export const FamiliarSection = () => {
   return (
-    <section
-      className="py-24 bg-background-light dark:bg-background-dark relative"
-      id="how-it-works"
-    >
+    <section className="py-20 relative scroll-mt-16" id="how-it-works">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1 relative">
-            <div className="absolute -left-10 -top-10 w-40 h-40 bg-soft-pink dark:bg-pink-900/20 rounded-full blur-2xl"></div>
             <video
               autoPlay
               loop

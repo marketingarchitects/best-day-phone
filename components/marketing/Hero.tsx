@@ -1,12 +1,18 @@
-import { Heart, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-[500px] md:min-h-[600px] overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full object-cover">
-        <video autoPlay muted loop playsInline>
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover object-top"
+        >
           <source src="/videos/hero-montage.mp4" type="video/mp4" />
         </video>
       </div>
@@ -16,11 +22,11 @@ export const HeroSection = () => {
       <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-semibold mb-6 border border-white/20">
-            <Heart className="w-4 h-4 text-white" />
+            <span className="material-icons-round text-base!">favorite</span>
             <span>For families caring for loved ones with memory loss</span>
           </div>
 
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6">
             The call that&apos;s <br />
             <span className="relative inline-block">
               always answered.
@@ -70,6 +76,14 @@ export const HeroSection = () => {
           </p>
         </div>
       </div>
+
+      <svg
+        className="absolute -bottom-1 left-0 w-full fill-accent h-[24px]"
+        preserveAspectRatio="none"
+        viewBox="0 0 1200 24"
+      >
+        <polygon points="0,24 0,14 150,10 380,16 520,8 780,14 950,9 1120,13 1200,11 1200,24" />
+      </svg>
     </section>
   );
 };

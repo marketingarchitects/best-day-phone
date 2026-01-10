@@ -1,4 +1,5 @@
 import Header from "@/components/marketing/Header";
+import { Footer } from "@/components/marketing/Footer";
 
 export default function LandingLayout({
   children,
@@ -9,7 +10,7 @@ export default function LandingLayout({
     <>
       <Header />
       <main>{children}</main>
-      <footer className="mt-20 h-64 bg-accent"></footer>
+      <Footer />
     </>
   );
 }

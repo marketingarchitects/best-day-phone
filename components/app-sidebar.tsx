@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Settings2, Home, CreditCard, Users } from "lucide-react";
+import { Settings2, Home, CreditCard, Users, Globe } from "lucide-react";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
@@ -18,6 +18,11 @@ import { useTeam } from "@/hooks/use-team";
 const data = {
   navMain: [
     {
+      title: "Best Day Phone",
+      url: "/",
+      icon: Globe,
+    },
+    {
       title: "Dashboard",
       url: "/dashboard",
       icon: Home,
@@ -27,7 +32,6 @@ const data = {
       url: "/dashboard/subscriptions",
       icon: CreditCard,
     },
-
     {
       title: "Settings",
       url: "/dashboard/settings",
