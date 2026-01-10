@@ -53,10 +53,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  className="hover:text-white transition"
-                  href="/#testimonials"
-                >
+                <Link className="hover:text-white transition" href="/">
                   Stories
                 </Link>
               </li>
@@ -76,17 +73,17 @@ export function Footer() {
             <h4 className="font-bold mb-4 text-primary">Company</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
-                <Link className="hover:text-white transition" href="/about">
+                <Link className="hover:text-white transition" href="/">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition" href="/mission">
+                <Link className="hover:text-white transition" href="/">
                   Mission
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition" href="/contact">
+                <Link className="hover:text-white transition" href="/">
                   Contact
                 </Link>
               </li>
@@ -96,12 +93,12 @@ export function Footer() {
             <h4 className="font-bold mb-4 text-primary">Legal</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
-                <Link className="hover:text-white transition" href="/privacy">
+                <Link className="hover:text-white transition" href="/">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-white transition" href="/terms">
+                <Link className="hover:text-white transition" href="/">
                   Terms of Service
                 </Link>
               </li>
