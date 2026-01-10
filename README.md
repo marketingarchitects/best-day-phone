@@ -2,6 +2,36 @@
 
 Best Day Phone is an AI companion inside a familiar rotary phone, designed specifically for people with Alzheimer's and dementia. The form factor is intentional — people with dementia remember things from childhood most strongly, and rotary phones are iconic to that era.
 
+## Table of Contents
+
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Git Branching Strategy](#git-branching-strategy)
+- [Database Management](#database-management)
+  - [Multi-Tenant Architecture](#multi-tenant-architecture)
+- [Authentication](#authentication)
+  - [Features](#features)
+  - [Available Auth Routes](#available-auth-routes)
+  - [Dashboard Routes](#dashboard-routes)
+  - [Client Usage](#client-usage)
+  - [Example: Accessing User Data](#example-accessing-user-data)
+  - [Team Context Provider](#team-context-provider)
+  - [Server-Side Team Helpers](#server-side-team-helpers)
+- [Payment Processing](#payment-processing)
+  - [Features](#features-1)
+  - [Subscription Confirmation Page](#subscription-confirmation-page)
+  - [Customer Portal](#customer-portal)
+  - [Stripe Utilities](#stripe-utilities)
+  - [Test Mode](#test-mode)
+- [HTML Prototypes](#html-prototypes)
+  - [Running the Prototype Server](#running-the-prototype-server)
+  - [Available Prototypes](#available-prototypes)
+- [Project Resources](#project-resources)
+- [Design & Messaging](#design--messaging)
+- [Learn More](#learn-more)
+
 ## Tech Stack
 
 This is a [Next.js](https://nextjs.org) project built with:
@@ -55,6 +85,16 @@ pnpm dev
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Git Branching Strategy
+
+This project follows a structured Git branching strategy for collaborative development. See [docs/git-branching-strategy.md](docs/git-branching-strategy.md) for complete documentation on:
+
+- Branch structure and naming conventions
+- Development workflow and processes
+- Code review guidelines
+- Release and deployment procedures
+- Team collaboration practices
 
 ## Database Management
 

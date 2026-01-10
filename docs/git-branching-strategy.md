@@ -10,8 +10,8 @@
 | **Noah**     | Project Manager                   |
 | **Jon**      | Design and Product Visionary      |
 | **JR**       | Technical Lead                    |
-| **Alex**     | Front-end Lead                    |
-| **Andy**     | Mobile App Lead                   |
+| **Alex**     | Front-end Developer               |
+| **Andy**     | Mobile App Developer              |
 | **Isaiah**   | Back-end Developer                |
 
 ### Development Cadence
