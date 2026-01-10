@@ -53,7 +53,7 @@ export default async function Header({ className }: HeaderProps) {
           <div className="ml-4 flex items-center gap-3">
             {user ? (
               <>
-                <Button asChild size={"lg"} className="glow" variant="outline">
+                <Button asChild size={"lg"} variant="outline">
                   <Link href="/dashboard">Dashboard</Link>
                 </Button>
               </>
