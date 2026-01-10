@@ -10,7 +10,7 @@ This folder contains HTML prototypes. Use `live-server` for local development wi
 ## Start the server
 
 ```bash
-cd /Users/jvargas/Documents/GitHub/best-day-phone/docs/design && npx --yes live-server --port=5500
+cd docs/design && npx --yes live-server --port=5500
 ```
 
 ## Server details
