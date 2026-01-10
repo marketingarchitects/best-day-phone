@@ -7,8 +7,9 @@ export default function LandingLayout({
 }) {
   return (
     <>
-      <Header className="py-4 z-10 relative" />
+      <Header />
       <main>{children}</main>
+      <footer className="mt-20 h-64 bg-accent"></footer>
     </>
   );
 }
